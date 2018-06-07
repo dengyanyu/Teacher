@@ -3,7 +3,7 @@
 // ZLIB 库使用的头文件与动态链接库
 #include "zlib.h"
 #include "zconf.h"
-#pragma comment(lib,"zdll.lib")
+#pragma comment(lib,"zlib.lib")
 //////////////////////////////////////////////////////////////////////////
 #include "Common.h"
 #include "SocketCenter.h"

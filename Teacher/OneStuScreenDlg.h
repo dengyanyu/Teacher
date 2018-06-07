@@ -1,7 +1,7 @@
 #pragma once
 #include "zlib.h"
 #include "zconf.h"
-#pragma comment(lib,"zdll.lib")
+#pragma comment(lib,"zlib.lib")
 #include "Common.h"
 
 // COneStuScreenDlg ¶Ô»°¿ò

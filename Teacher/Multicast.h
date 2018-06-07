@@ -3,7 +3,7 @@
 // ZLIB¿â
 #include "zlib.h"
 #include "zconf.h"
-#pragma comment(lib,"zdll.lib")
+#pragma comment(lib,"zlib.lib")
 #include "SocketCenter.h"
 //////////////////////////////////////////////////////////////////////////
 class CMulticast

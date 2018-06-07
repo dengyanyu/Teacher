@@ -7,7 +7,7 @@
 // ZLIB 库的头文件
 #include "zlib.h"
 #include "zconf.h"
-#pragma comment(lib,"zdll.lib")
+#pragma comment(lib,"zlib.lib")
 //////////////////////////////////////////////////////////////////////////
 #include "ScreenMonitorDlg.h"
 #include "Multicast.h"
