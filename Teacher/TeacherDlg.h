@@ -14,7 +14,9 @@
 
 // 这里的ID 是与工具栏产生时赋值的ID 是对应的
 #define ID_MULTICAST 1001
+#define ID_MULTICAST_STOP 1003
 #define ID_SCREENMONITOR	 1002
+
 
 // CTeacherDlg 对话框
 class CTeacherDlg : public CDialogEx
@@ -48,6 +50,8 @@ protected:
 
 	static DWORD WINAPI OnIPListen(LPVOID self);
 
+	static DWORD WINAPI SwitchButton(LPVOID self);
+
 	afx_msg LRESULT OnAddStudent(WPARAM wparam, LPARAM lparam);
 
 	afx_msg LRESULT OnLoginOutStudent(WPARAM wparam, LPARAM lparam);
@@ -65,6 +69,8 @@ protected:
 	afx_msg void OnBeginScreenMonitor();
 
 	afx_msg void OnMulticast();
+
+	afx_msg void OnMulticastStop();
 
 private:
 	CListCtrl m_list;

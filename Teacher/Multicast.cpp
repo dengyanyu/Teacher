@@ -328,7 +328,8 @@ void CMulticast::SendScreenData()
 		//		SendBmpHeaderInfo(socketMsg);
 		SendScreenBmpData(socketMulticast, addr);
 
-		Sleep(500);
+		Sleep(5);
+		//AfxMessageBox(_T("1"));
 	}
 }
 

@@ -50,6 +50,7 @@ BEGIN_MESSAGE_MAP(CTeacherDlg, CDialogEx)
 	ON_MESSAGE(ID_SETONESTUBMPDATA, OnSetOneStuBmpCompressData)
 	ON_MESSAGE(ID_ONESTUINSCREENEND, OnEndOneStudentMonitor)
 	ON_COMMAND(ID_MULTICAST, OnMulticast)
+	ON_COMMAND(ID_MULTICAST_STOP, OnMulticastStop)
 	ON_COMMAND(ID_SCREENMONITOR, OnBeginScreenMonitor)
 ON_WM_DESTROY()
 ON_NOTIFY(NM_CLICK, IDC_LIST1, &CTeacherDlg::OnNMClickList1)
@@ -93,6 +94,7 @@ BOOL CTeacherDlg::OnInitDialog()
 	// 创建一个线程用于监听服务端上线SOCKET
 	::CloseHandle(CreateThread(0, 0, OnIPListen, (LPVOID)this, 0, NULL));
 	::CloseHandle(CreateThread(0, 0, OnMsgListen, (LPVOID)this, 0, NULL));
+
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -306,16 +308,18 @@ Desc		: 创建工具栏
 void CTeacherDlg::CreatToolBar()
 {
 	// 设置每一个工具栏的ID，之后要添加消息响应
-	const UINT t[2] = { 1001, 1002 };
+	const UINT t[3] = { 1001, 1003, 1002 };
 	m_toolBar.CreateEx(this);
-	m_toolBar.SetButtons(t, 2);
+	m_toolBar.SetButtons(t, 3);
 	m_toolBar.SetSizes(CSize(60, 56), CSize(24, 24));
 	// 工具栏添加文字
-	m_toolBar.SetButtonText(0, _T("屏幕投影"));
-	m_toolBar.SetButtonText(1, _T("屏幕监控"));
+	m_toolBar.SetButtonText(0, _T("开始投影"));
+	m_toolBar.SetButtonText(1, _T("停止投影"));
+	m_toolBar.SetButtonText(2, _T("屏幕监控"));
 
 	// 工具栏添加图片
 	m_toolBar.GetToolBarCtrl().SetImageList(&m_imagelist);
+	m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST_STOP, false);
 }
 
 /******************************************************************
@@ -330,6 +334,9 @@ void CTeacherDlg::LoadBitBmp()
 {
 	m_imagelist.Create(32, 32, ILC_COLOR24 | ILC_MASK, 1, 1);
 	CBitmap bmp;
+	bmp.LoadBitmapW(IDB_MULTICAST);
+	m_imagelist.Add(&bmp, RGB(255, 255, 255));
+	bmp.DeleteObject();
 	bmp.LoadBitmapW(IDB_MULTICAST);
 	m_imagelist.Add(&bmp, RGB(255, 255, 255));
 	bmp.DeleteObject();
@@ -540,9 +547,9 @@ Desc		: 响应消息ID_ONSCREENMONITOR并调用发送屏幕监控消息到
 void CTeacherDlg::OnBeginScreenMonitor()
 {
 	int selCount = m_list.GetSelectedCount();
-	if (selCount > 16)
+	if (selCount > 2)
 	{
-		MessageBox(_T("同时监控的学生机子数量不能超过16台"));
+		MessageBox(_T("同时监控的学生机子数量不能超过2台"));
 		return;
 	}
 	if (0 == selCount)
@@ -617,28 +624,31 @@ Desc		: 开始广播响应消息ID_MULTICAST
 void CTeacherDlg::OnMulticast()
 {
 	m_pMulticast = new CMulticast();
-	if (false == m_isStopMulticast)
+	m_pMulticast->SetIsMulticastEnd(false);
+	for (int i = 0; i < m_list.GetItemCount(); i++)
 	{
-		m_pMulticast->SetIsMulticastEnd(false);
-		for (int i = 0; i < m_list.GetItemCount(); i++)
-		{
-			CItemData* itemData = (CItemData*)m_list.GetItemData(i);
-			itemData->BeginMulticast();
-		}
-		::CloseHandle(CreateThread(0, 0, OnSendScreenData, (LPVOID)this, 0, NULL));
-		m_isStopMulticast = true;
+		CItemData* itemData = (CItemData*)m_list.GetItemData(i);
+		itemData->BeginMulticast();
 	}
-	else
+	::CloseHandle(CreateThread(0, 0, OnSendScreenData, (LPVOID)this, 0, NULL));
+	m_isStopMulticast = true;
+
+	::CloseHandle(CreateThread(0, 0, SwitchButton, (LPVOID)this, 0, NULL));
+}
+
+void CTeacherDlg::OnMulticastStop()
+{
+	
+	for (int i = 0; i < m_list.GetItemCount(); i++)
 	{
-		for (int i = 0; i < m_list.GetItemCount(); i++)
-		{
-		 	CItemData* itemData = (CItemData*)m_list.GetItemData(i);
-		 	itemData->EndMulticast();
-		}
-		m_pMulticast->SetIsMulticastEnd(true);
-		m_isStopMulticast = false;
-		DeletepMulticast();
+		CItemData* itemData = (CItemData*)m_list.GetItemData(i);
+		itemData->EndMulticast();
 	}
+	m_pMulticast->SetIsMulticastEnd(true);
+	m_isStopMulticast = false;
+	//DeletepMulticast();
+
+	::CloseHandle(CreateThread(0, 0, SwitchButton, (LPVOID)this, 0, NULL));
 }
 
 /******************************************************************
@@ -653,6 +663,22 @@ DWORD WINAPI CTeacherDlg::OnSendScreenData(LPVOID self)
 {
 	CTeacherDlg* t = (CTeacherDlg*)self;
 	t->SendScreenData();
+	return 0;
+}
+
+DWORD WINAPI CTeacherDlg::SwitchButton(LPVOID self)
+{
+	CTeacherDlg* t = (CTeacherDlg*)self;
+	t->m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST, false);
+	t->m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST_STOP, false);
+
+	Sleep(1000);
+
+	if (t->m_isStopMulticast) {
+		t->m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST_STOP, true);
+	} else {
+		t->m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST, true);
+	}
 	return 0;
 }
 
