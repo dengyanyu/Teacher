@@ -43,6 +43,7 @@ void COneStuScreenDlg::ShowBmp(BMP* bmp, int itemOrder)
 	HDC hdc = GetDC()->m_hDC;
 	if (hdc != NULL)
 	{
+		::SetStretchBltMode(hdc, STRETCH_HALFTONE); //解决失真问题
 		::StretchDIBits(hdc,
 			0,
 			0,

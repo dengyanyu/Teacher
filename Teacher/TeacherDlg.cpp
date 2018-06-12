@@ -666,6 +666,15 @@ DWORD WINAPI CTeacherDlg::OnSendScreenData(LPVOID self)
 	return 0;
 }
 
+/******************************************************************
+Function	: SwitchButton
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018/06/12
+Parameter	: LPVOID self
+Return		: DWORD WINAPI
+Desc		: 
+******************************************************************/
+
 DWORD WINAPI CTeacherDlg::SwitchButton(LPVOID self)
 {
 	CTeacherDlg* t = (CTeacherDlg*)self;

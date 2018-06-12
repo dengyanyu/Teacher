@@ -144,6 +144,7 @@ void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 	HDC hdc = GetDC()->m_hDC;
 	if (hdc != NULL)
 	{
+		::SetStretchBltMode(hdc, STRETCH_HALFTONE); //解决失真问题
 		::StretchDIBits(hdc,
 			xDest,
 			yDest,
