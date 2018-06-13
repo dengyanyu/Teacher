@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ItemData.h"
 
 CItemData::CItemData()
@@ -25,9 +25,9 @@ CItemData::CItemData(int id, HWND m_hWnd, SOCKET msgSocket)
 Function	: OnListen
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:20
-Parameter	: lp--CItemData ¶ÔÏó
+Parameter	: lp--CItemData å¯¹è±¡
 Return		: DWORD WINAPI
-Desc		: ¼àÌıÖ÷ÏûÏ¢µÄÏß³Ìµ÷ÓÃº¯Êı
+Desc		: ç›‘å¬ä¸»æ¶ˆæ¯çš„çº¿ç¨‹è°ƒç”¨å‡½æ•°
 ******************************************************************/
 DWORD WINAPI CItemData::OnListen(LPVOID lp)
 {
@@ -42,7 +42,7 @@ Function	: Run
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:20
 Return		: void
-Desc		: ÔÚÕâÀïÆô¶¯¼àÌıÏûÏ¢µÄÏß³Ì
+Desc		: åœ¨è¿™é‡Œå¯åŠ¨ç›‘å¬æ¶ˆæ¯çš„çº¿ç¨‹
 ******************************************************************/
 void CItemData::Run()
 {
@@ -55,7 +55,7 @@ Function	: SetScreenBmpData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:20
 Return		: void
-Desc		: ½ÓÊÕÀ´×ÔÑ§Éú»úµÄÆÁÄ»Í¼ÏñÊı¾İ²¢½«Êı¾İ·¢ËÍ¸øÏÔÊ¾Í¼ÏñµÄ¶Ô»°¿ò
+Desc		: æ¥æ”¶æ¥è‡ªå­¦ç”Ÿæœºçš„å±å¹•å›¾åƒæ•°æ®å¹¶å°†æ•°æ®å‘é€ç»™æ˜¾ç¤ºå›¾åƒçš„å¯¹è¯æ¡†
 ******************************************************************/
 void CItemData::SetScreenBmpData()
 {
@@ -65,14 +65,14 @@ void CItemData::SetScreenBmpData()
 
 	switch (bmpData.infoType)
 	{
-	case 1: // Î»Í¼Êı¾İĞÅÏ¢
+	case 1: // ä½å›¾æ•°æ®ä¿¡æ¯
 		SetBmpTransDataNotLast(bmpData);
 		break;
-	case 2: // ½ÓÊÕ×îºóÒ»´Î·¢ËÍµÄÊı¾İ
+	case 2: // æ¥æ”¶æœ€åä¸€æ¬¡å‘é€çš„æ•°æ®
 		SetBmpTransDataLast(bmpData);
 		break;
 	default:
-		MessageBox(_T("Î´ÖªµÄÍ¼ÏñÊı¾İID"), _T("ÌáÊ¾"), MB_OK);
+		MessageBox(_T("æœªçŸ¥çš„å›¾åƒæ•°æ®ID"), _T("æç¤º"), MB_OK);
 		CleanData();
 		exit(1);
 	}
@@ -84,9 +84,9 @@ void CItemData::SetScreenBmpData()
 Function	: SendBmpDataToDlg
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:20
-Parameter	: bmpData--MBPDATAÍ¼ÏñÊı¾İµÄ½á¹¹Ìå£¬Í¼ÏñµÄ±ØÒªĞÅÏ¢
+Parameter	: bmpData--MBPDATAå›¾åƒæ•°æ®çš„ç»“æ„ä½“ï¼Œå›¾åƒçš„å¿…è¦ä¿¡æ¯
 Return		: void
-Desc		: ½«Ñ§Éú»ú½ÓÊÕµ½µÄÆÁÄ»Í¼ÏñÊı¾İ·¢ËÍµ½ÏÔÊ¾Í¼ÏñµÄ¶Ô»°¿ò
+Desc		: å°†å­¦ç”Ÿæœºæ¥æ”¶åˆ°çš„å±å¹•å›¾åƒæ•°æ®å‘é€åˆ°æ˜¾ç¤ºå›¾åƒçš„å¯¹è¯æ¡†
 ******************************************************************/
 void CItemData::SendBmpDataToDlg(BMPDATA &bmpData)
 {
@@ -105,7 +105,7 @@ void CItemData::SendBmpDataToDlg(BMPDATA &bmpData)
 			::SendMessage(this->m_hWnd, ID_SETONESTUBMPDATA, (WPARAM)&bmp, (LPARAM)&m_itemOrder);
 		}
 
-		// ·¢ËÍµÄÏûÏ¢±»´¦ÀíÍê³É·µ»ØÖ®ºó²Å»áÔËĞĞÖ®ºóµÄ´úÂë
+		// å‘é€çš„æ¶ˆæ¯è¢«å¤„ç†å®Œæˆè¿”å›ä¹‹åæ‰ä¼šè¿è¡Œä¹‹åçš„ä»£ç 
 		delete[] m_pBmpCompressData;
 		m_pBmpCompressData = NULL;
 		LocalFree(m_pBitMapInfo);
@@ -118,9 +118,9 @@ void CItemData::SendBmpDataToDlg(BMPDATA &bmpData)
 Function	: SetBmpTransDataLast
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:21
-Parameter	: bmpData--MBPDATAÍ¼ÏñÊı¾İµÄ½á¹¹Ìå£¬Í¼ÏñµÄ±ØÒªĞÅÏ¢
+Parameter	: bmpData--MBPDATAå›¾åƒæ•°æ®çš„ç»“æ„ä½“ï¼Œå›¾åƒçš„å¿…è¦ä¿¡æ¯
 Return		: void
-Desc		: ½ÓÊÕÀ´×ÔÑ§Éú»úµÄÒ»·ùÆÁÄ»Í¼ÏñÊı¾İµÄ×îºóÒ»²¿·Ö
+Desc		: æ¥æ”¶æ¥è‡ªå­¦ç”Ÿæœºçš„ä¸€å¹…å±å¹•å›¾åƒæ•°æ®çš„æœ€åä¸€éƒ¨åˆ†
 ******************************************************************/
 void CItemData::SetBmpTransDataLast(BMPDATA &bmpData)
 {
@@ -149,10 +149,10 @@ void CItemData::SetBmpTransDataNotLast(BMPDATA &bmpData)
 Function	: UnCompressData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:21
-Parameter	: biSizeImage--Î´Ñ¹ËõÊ±µÄÍ¼Ïñ´óĞ¡
-Parameter	: bmpCompressSize--Ñ¹ËõºóµÄÍ¼Ïñ´óĞ¡
+Parameter	: biSizeImage--æœªå‹ç¼©æ—¶çš„å›¾åƒå¤§å°
+Parameter	: bmpCompressSize--å‹ç¼©åçš„å›¾åƒå¤§å°
 Return		: BYTE*
-Desc		: ½«½ÓÊÕµ½µÄÆÁÄ»Í¼ÏñÊı¾İ½âÑ¹
+Desc		: å°†æ¥æ”¶åˆ°çš„å±å¹•å›¾åƒæ•°æ®è§£å‹
 ******************************************************************/
 BYTE* CItemData::UnCompressData(uLongf biSizeImage, uLongf bmpCompressSize)
 {
@@ -182,9 +182,9 @@ BYTE* CItemData::UnCompressData(uLongf biSizeImage, uLongf bmpCompressSize)
 Function	: BeginMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:21
-Parameter	: itemOrder--±»¼à¿ØÑ§ÉúÃæÔÚ¶Ô»°¿òÉÏÏÔÊ¾µÄĞòºÅ
+Parameter	: itemOrder--è¢«ç›‘æ§å­¦ç”Ÿé¢åœ¨å¯¹è¯æ¡†ä¸Šæ˜¾ç¤ºçš„åºå·
 Return		: void
-Desc		: 1¶Ô¶à¼à¿ØÊ±·¢ËÍÆÁÄ»¼à¿ØÏûÏ¢µ½Ñ§Éú»ú£¬±íÊ¾½ÌÊ¦»úÒª¼à¿ØÄãµÄ»­Ãæ
+Desc		: 1å¯¹å¤šç›‘æ§æ—¶å‘é€å±å¹•ç›‘æ§æ¶ˆæ¯åˆ°å­¦ç”Ÿæœºï¼Œè¡¨ç¤ºæ•™å¸ˆæœºè¦ç›‘æ§ä½ çš„ç”»é¢
 ******************************************************************/
 void CItemData::BeginMonitor(int itemOrder)
 {
@@ -199,11 +199,11 @@ void CItemData::BeginMonitor(int itemOrder)
 Function	: BeginMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:21
-Parameter	: isOneSutInScreen--false ½«Ñ§Éú»úÆÁÄ»Í¼ÏñÊı¾İ·¢ËÍ¸øclass CScreenMonitorDlg
-								true ½«Ñ§Éú»úÆÁÄ»Í¼ÏñÊı¾İ·¢ËÍ¸øclass COneStuScreenDlg
-Parameter	: itemOrder--Ñ§ÉúÆÁÄ»ÔÚ¶Ô»°¿òÉÏÏÔÊ¾µÄĞòºÅ
+Parameter	: isOneSutInScreen--false å°†å­¦ç”Ÿæœºå±å¹•å›¾åƒæ•°æ®å‘é€ç»™class CScreenMonitorDlg
+								true å°†å­¦ç”Ÿæœºå±å¹•å›¾åƒæ•°æ®å‘é€ç»™class COneStuScreenDlg
+Parameter	: itemOrder--å­¦ç”Ÿå±å¹•åœ¨å¯¹è¯æ¡†ä¸Šæ˜¾ç¤ºçš„åºå·
 Return		: void
-Desc		: 1¶Ô1¼à¿ØÊ±·¢ËÍÆÁÄ»¼à¿ØÏûÏ¢µ½Ñ§Éú»ú£¬±íÊ¾½ÌÊ¦»úÒª¼à¿ØÄãµÄ»­Ãæ
+Desc		: 1å¯¹1ç›‘æ§æ—¶å‘é€å±å¹•ç›‘æ§æ¶ˆæ¯åˆ°å­¦ç”Ÿæœºï¼Œè¡¨ç¤ºæ•™å¸ˆæœºè¦ç›‘æ§ä½ çš„ç”»é¢
 ******************************************************************/
 void CItemData::BeginMonitor(bool isOneSutInScreen, int itemOrder)
 {
@@ -219,7 +219,7 @@ Function	: EndScreenMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
 Return		: void
-Desc		: ·¢ËÍÏûÏ¢£¬½áÊø¶ÔÑ§Éú»úµÄÆÁÄ»Í¼Ïñ¼à¿Ø
+Desc		: å‘é€æ¶ˆæ¯ï¼Œç»“æŸå¯¹å­¦ç”Ÿæœºçš„å±å¹•å›¾åƒç›‘æ§
 ******************************************************************/
 void CItemData::EndScreenMonitor()
 {
@@ -234,7 +234,7 @@ Function	: BeginMulticast
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
 Return		: void
-Desc		: ¿ªÊ¼½ÌÊ¦»úÆÁÄ»¹ã²¥
+Desc		: å¼€å§‹æ•™å¸ˆæœºå±å¹•å¹¿æ’­
 ******************************************************************/
 void CItemData::BeginMulticast()
 {
@@ -247,7 +247,7 @@ Function	: EndMulticast
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
 Return		: void
-Desc		: ½áÊø½ÌÊ¦»úÆÁÄ»¹ã²¥
+Desc		: ç»“æŸæ•™å¸ˆæœºå±å¹•å¹¿æ’­
 ******************************************************************/
 void CItemData::EndMulticast()
 {
@@ -266,7 +266,7 @@ Function	: DeletepBitMapInfo
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CItemData::DeletepBitMapInfo()
 {
@@ -283,7 +283,7 @@ Function	: DeletepBmpCompressData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CItemData::DeletepBmpCompressData()
 {
@@ -300,7 +300,7 @@ Function	: OnBeginListen
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
 Return		: void
-Desc		: ¼àÌıÀ´×ÔÑ§Éú»úµÄÏûÏ¢
+Desc		: ç›‘å¬æ¥è‡ªå­¦ç”Ÿæœºçš„æ¶ˆæ¯
 ******************************************************************/
 void CItemData::OnBeginListen()
 {
@@ -325,7 +325,7 @@ void CItemData::OnBeginListen()
 				SetScreenBmpData();
 				break;
 			default:
-				MessageBox(_T("ÏûÏ¢ÓĞÎÊÌâ"), _T("¾¯¸æ"), MB_OK);
+				MessageBox(_T("æ¶ˆæ¯æœ‰é—®é¢˜"), _T("è­¦å‘Š"), MB_OK);
 				continue;
 			}
 		}
@@ -337,18 +337,18 @@ void CItemData::OnBeginListen()
 Function	: SendDataTCP
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:23
-Parameter	: nRet--½ÓÊÕÏûÏ¢µÄ·µ»ØÖµ
-Parameter	: msgType--À´×ÔÑ§Éú»úµÄÏûÏ¢µÄÇëÇóÄÚÈİ
+Parameter	: nRet--æ¥æ”¶æ¶ˆæ¯çš„è¿”å›å€¼
+Parameter	: msgType--æ¥è‡ªå­¦ç”Ÿæœºçš„æ¶ˆæ¯çš„è¯·æ±‚å†…å®¹
 Return		: void
-Desc		: ½ÓÊÕÀ´×ÔÑ§Éú»úµÄÏûÏ¢
+Desc		: æ¥æ”¶æ¥è‡ªå­¦ç”Ÿæœºçš„æ¶ˆæ¯
 ******************************************************************/
 void CItemData::SendDataTCP(int &nRet, MSGTYPE& msgType)
 {
 	nRet = m_Mysocket.RecvDataTCP(m_socketMsg, (char*)&msgType, sizeof(MSGTYPE));
-	// SOCKET Á¬½ÓÊÇ·ñ¹Ø±Õ
+	// SOCKET è¿æ¥æ˜¯å¦å…³é—­
 	if (nRet == 0)
 	{
-		// SOCKET ÊÇ·ñ·¢Éú×èÈû
+		// SOCKET æ˜¯å¦å‘ç”Ÿé˜»å¡
 		if (::WSAGetLastError() == WSAEWOULDBLOCK)
 		{
 			Sleep(50);
@@ -369,7 +369,7 @@ Function	: GetSocket
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:24
 Return		: SOCKET
-Desc		: ·µ»ØÒ»¸öÁ¬½ÓµÄSOCKET
+Desc		: è¿”å›ä¸€ä¸ªè¿æ¥çš„SOCKET
 ******************************************************************/
 SOCKET CItemData::GetSocket()
 {

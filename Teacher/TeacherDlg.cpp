@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Teacher.h"
 #include "TeacherDlg.h"
 #include "afxdialogex.h"
@@ -9,7 +9,7 @@
 #endif
 
 
-// CTeacherDlg ¶Ô»°¿ò
+// CTeacherDlg å¯¹è¯æ¡†
 
 
 
@@ -51,15 +51,15 @@ ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &CTeacherDlg::OnNMDblclkList1)
 END_MESSAGE_MAP()
 
 
-// CTeacherDlg ÏûÏ¢´¦Àí³ÌĞò
+// CTeacherDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 BOOL CTeacherDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ½«¡°¹ØÓÚ...¡±²Ëµ¥ÏîÌí¼Óµ½ÏµÍ³²Ëµ¥ÖĞ¡£
+	// å°†â€œå…³äº...â€èœå•é¡¹æ·»åŠ åˆ°ç³»ç»Ÿèœå•ä¸­ã€‚
 
-	// IDM_ABOUTBOX ±ØĞëÔÚÏµÍ³ÃüÁî·¶Î§ÄÚ¡£
+	// IDM_ABOUTBOX å¿…é¡»åœ¨ç³»ç»Ÿå‘½ä»¤èŒƒå›´å†…ã€‚
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -77,18 +77,18 @@ BOOL CTeacherDlg::OnInitDialog()
 		}
 	}
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£  µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	// è®¾ç½®æ­¤å¯¹è¯æ¡†çš„å›¾æ ‡ã€‚  å½“åº”ç”¨ç¨‹åºä¸»çª—å£ä¸æ˜¯å¯¹è¯æ¡†æ—¶ï¼Œæ¡†æ¶å°†è‡ªåŠ¨
+	//  æ‰§è¡Œæ­¤æ“ä½œ
+	SetIcon(m_hIcon, TRUE);			// è®¾ç½®å¤§å›¾æ ‡
+	SetIcon(m_hIcon, FALSE);		// è®¾ç½®å°å›¾æ ‡
 
-	// TODO:  ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–ä»£ç 
 	SetMainDlgSytle();
-	// ´´½¨Ò»¸öÏß³ÌÓÃÓÚ¼àÌı·şÎñ¶ËÉÏÏßSOCKET
+	// åˆ›å»ºä¸€ä¸ªçº¿ç¨‹ç”¨äºç›‘å¬æœåŠ¡ç«¯ä¸Šçº¿SOCKET
 	::CloseHandle(CreateThread(0, 0, OnIPListen, (LPVOID)this, 0, NULL));
 	::CloseHandle(CreateThread(0, 0, OnMsgListen, (LPVOID)this, 0, NULL));
 
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // é™¤éå°†ç„¦ç‚¹è®¾ç½®åˆ°æ§ä»¶ï¼Œå¦åˆ™è¿”å› TRUE
 }
 
 
@@ -97,18 +97,18 @@ void CTeacherDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	CDialogEx::OnSysCommand(nID, lParam);
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£  ¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// å¦‚æœå‘å¯¹è¯æ¡†æ·»åŠ æœ€å°åŒ–æŒ‰é’®ï¼Œåˆ™éœ€è¦ä¸‹é¢çš„ä»£ç 
+//  æ¥ç»˜åˆ¶è¯¥å›¾æ ‡ã€‚  å¯¹äºä½¿ç”¨æ–‡æ¡£/è§†å›¾æ¨¡å‹çš„ MFC åº”ç”¨ç¨‹åºï¼Œ
+//  è¿™å°†ç”±æ¡†æ¶è‡ªåŠ¨å®Œæˆã€‚
 void CTeacherDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // ç”¨äºç»˜åˆ¶çš„è®¾å¤‡ä¸Šä¸‹æ–‡
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ä½¿å›¾æ ‡åœ¨å·¥ä½œåŒºçŸ©å½¢ä¸­å±…ä¸­
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -116,7 +116,7 @@ void CTeacherDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ç»˜åˆ¶å›¾æ ‡
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -125,8 +125,8 @@ void CTeacherDlg::OnPaint()
 	}
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//å½“ç”¨æˆ·æ‹–åŠ¨æœ€å°åŒ–çª—å£æ—¶ç³»ç»Ÿè°ƒç”¨æ­¤å‡½æ•°å–å¾—å…‰æ ‡
+//æ˜¾ç¤ºã€‚
 HCURSOR CTeacherDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -137,9 +137,9 @@ HCURSOR CTeacherDlg::OnQueryDragIcon()
 Function	: OnMsgListen
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:07
-Parameter	: self--CTeacherDlgÀà
+Parameter	: self--CTeacherDlgç±»
 Return		: DWORD WINAPI
-Desc		: ¼àÌıÑ§Éú»úµÇÂ¼Ïß³ÌµÄÔËĞĞ·½·¨
+Desc		: ç›‘å¬å­¦ç”Ÿæœºç™»å½•çº¿ç¨‹çš„è¿è¡Œæ–¹æ³•
 ******************************************************************/
 DWORD WINAPI CTeacherDlg::OnMsgListen(LPVOID self)
 {
@@ -168,7 +168,7 @@ Function	: ListenStudentLogin
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:07
 Return		: bool
-Desc		: ¼àÌıÑ§ÉúµÇÂ¼²¢²úÉúÎ¨Ò»µÄID
+Desc		: ç›‘å¬å­¦ç”Ÿç™»å½•å¹¶äº§ç”Ÿå”¯ä¸€çš„ID
 ******************************************************************/
 bool CTeacherDlg::ListenStudentLogin()
 {
@@ -195,7 +195,7 @@ Function	: SetLoginStudentID
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:07
 Return		: void
-Desc		: ¸øµÇÂ¼Ñ§Éú»ú·ÖÅäÎ¨Ò»µÄID
+Desc		: ç»™ç™»å½•å­¦ç”Ÿæœºåˆ†é…å”¯ä¸€çš„ID
 ******************************************************************/
 void CTeacherDlg::SetLoginStudentID()
 {
@@ -221,7 +221,7 @@ void CTeacherDlg::SetLoginStudentID()
 		}
 	}
 	itemData = new CItemData(id, m_hWnd, m_socketMsg);
-	// ¼àÌıÏûÏ¢µÄÏß³ÌÔËĞĞ
+	// ç›‘å¬æ¶ˆæ¯çš„çº¿ç¨‹è¿è¡Œ
 	itemData->Run();
 }
 
@@ -231,7 +231,7 @@ Function	: SetMainDlgSytle
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:08
 Return		: void
-Desc		: ÉèÖÃ½ÌÊ¦»úµÄÖ÷½çÃæ
+Desc		: è®¾ç½®æ•™å¸ˆæœºçš„ä¸»ç•Œé¢
 ******************************************************************/
 void CTeacherDlg::SetMainDlgSytle()
 {
@@ -253,16 +253,16 @@ Function	: InsertColumn
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:08
 Return		: void
-Desc		: ÎªListControl ²åÈëÁĞÍ·
+Desc		: ä¸ºListControl æ’å…¥åˆ—å¤´
 ******************************************************************/
 void CTeacherDlg::InsertColumn()
 {
-	// ÉèÖÃList Control ·ç¸ñÎªÕûĞĞÑ¡ÖĞ£¬Íø¸ñ£¬´øÓĞ¸´Ñ¡¿ò£¨¿Ø¼şµÄViewÊôĞÔÖµÒªÉèÖÃÎªReport£©
+	// è®¾ç½®List Control é£æ ¼ä¸ºæ•´è¡Œé€‰ä¸­ï¼Œç½‘æ ¼ï¼Œå¸¦æœ‰å¤é€‰æ¡†ï¼ˆæ§ä»¶çš„Viewå±æ€§å€¼è¦è®¾ç½®ä¸ºReportï¼‰
 	m_list.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
-	// ¸øList Control Ìí¼ÓÁĞ
-	m_list.InsertColumn(0, _T("ĞÕÃû"), LVCFMT_CENTER, 150);
-	m_list.InsertColumn(1, _T("ĞÕÃû"), LVCFMT_CENTER, 150);
-	m_list.InsertColumn(2, _T("Ñ§ºÅ"), LVCFMT_CENTER, 150);
+	// ç»™List Control æ·»åŠ åˆ—
+	m_list.InsertColumn(0, _T("å§“å"), LVCFMT_CENTER, 150);
+	m_list.InsertColumn(1, _T("å§“å"), LVCFMT_CENTER, 150);
+	m_list.InsertColumn(2, _T("å­¦å·"), LVCFMT_CENTER, 150);
 	m_list.DeleteColumn(0);
 }
 
@@ -272,22 +272,22 @@ Function	: CreateStatusBar
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:08
 Return		: void
-Desc		: ´´½¨×´Ì¬À¸
+Desc		: åˆ›å»ºçŠ¶æ€æ 
 ******************************************************************/
 void CTeacherDlg::CreateStatusBar()
 {
-	// µ×²¿×´Ì¬À¸µÄ´´½¨
+	// åº•éƒ¨çŠ¶æ€æ çš„åˆ›å»º
 	BOOL hbar = m_statusBar.Create(this);
-	// ×´Ì¬À¸µÄID
+	// çŠ¶æ€æ çš„ID
 	CRect ct;
 	GetClientRect(&ct);
 	UINT b[2] = { 1009, 1010 };
 	hbar = m_statusBar.SetIndicators(b, 2);
 	m_statusBar.SetPaneInfo(0, b[0], SBPS_NORMAL, (int)(ct.Width() * 0.5));
 	m_statusBar.SetPaneInfo(1, b[1], SBPS_NORMAL, (int)(ct.Width() * 0.5));
-	m_statusBar.SetPaneText(0, _T("×÷Õß£ºÊ¯ÔÌ½ğ"));
-	m_statusBar.SetPaneText(1, _T("ÔÚÏßÖ÷»ú£º0 Ì¨"));
-	// ÏÔÊ¾¹¤¾ßÌõÓë×´Ì¬Ìõ
+	m_statusBar.SetPaneText(0, _T("ä½œè€…ï¼šçŸ³è•´é‡‘"));
+	m_statusBar.SetPaneText(1, _T("åœ¨çº¿ä¸»æœºï¼š0 å°"));
+	// æ˜¾ç¤ºå·¥å…·æ¡ä¸çŠ¶æ€æ¡
 	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
 }
 
@@ -297,21 +297,21 @@ Function	: CreatToolBar
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:08
 Return		: void
-Desc		: ´´½¨¹¤¾ßÀ¸
+Desc		: åˆ›å»ºå·¥å…·æ 
 ******************************************************************/
 void CTeacherDlg::CreatToolBar()
 {
-	// ÉèÖÃÃ¿Ò»¸ö¹¤¾ßÀ¸µÄID£¬Ö®ºóÒªÌí¼ÓÏûÏ¢ÏìÓ¦
+	// è®¾ç½®æ¯ä¸€ä¸ªå·¥å…·æ çš„IDï¼Œä¹‹åè¦æ·»åŠ æ¶ˆæ¯å“åº”
 	const UINT t[3] = { 1001, 1003, 1002 };
 	m_toolBar.CreateEx(this);
 	m_toolBar.SetButtons(t, 3);
 	m_toolBar.SetSizes(CSize(60, 56), CSize(24, 24));
-	// ¹¤¾ßÀ¸Ìí¼ÓÎÄ×Ö
-	m_toolBar.SetButtonText(0, _T("¿ªÊ¼Í¶Ó°"));
-	m_toolBar.SetButtonText(1, _T("Í£Ö¹Í¶Ó°"));
-	m_toolBar.SetButtonText(2, _T("ÆÁÄ»¼à¿Ø"));
+	// å·¥å…·æ æ·»åŠ æ–‡å­—
+	m_toolBar.SetButtonText(0, _T("å¼€å§‹æŠ•å½±"));
+	m_toolBar.SetButtonText(1, _T("åœæ­¢æŠ•å½±"));
+	m_toolBar.SetButtonText(2, _T("å±å¹•ç›‘æ§"));
 
-	// ¹¤¾ßÀ¸Ìí¼ÓÍ¼Æ¬
+	// å·¥å…·æ æ·»åŠ å›¾ç‰‡
 	m_toolBar.GetToolBarCtrl().SetImageList(&m_imagelist);
 	m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST_STOP, false);
 }
@@ -322,7 +322,7 @@ Function	: LoadBitBmp
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:08
 Return		: void
-Desc		: ¼ÓÔØÎ»Í¼×ÊÔ´
+Desc		: åŠ è½½ä½å›¾èµ„æº
 ******************************************************************/
 void CTeacherDlg::LoadBitBmp()
 {
@@ -344,10 +344,10 @@ void CTeacherDlg::LoadBitBmp()
 Function	: OnAddStudent
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:09
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇCItemDataÀà¶ÔÏó
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯CItemDataç±»å¯¹è±¡
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
 Return		: LRESULT
-Desc		: ÏìÓ¦ID_STUDENTLOGIN ÏûÏ¢
+Desc		: å“åº”ID_STUDENTLOGIN æ¶ˆæ¯
 ******************************************************************/
 LRESULT CTeacherDlg::OnAddStudent(WPARAM wparam, LPARAM lparam)
 {
@@ -371,14 +371,14 @@ Function	: ShowStudentInfo
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:09
 Return		: void
-Desc		: ÏÔÊ¾µÇÂ¼Ñ§Éú»úµÄĞÅÏ¢
+Desc		: æ˜¾ç¤ºç™»å½•å­¦ç”Ÿæœºçš„ä¿¡æ¯
 ******************************************************************/
 void  CTeacherDlg::ShowStudentInfo()
 {
 	int c = m_list.GetItemCount();
 	CString online;
 	TCHAR* szText;
-	online.Format(_T("ÔÚÏßÖ÷»ú£º%d Ì¨"), c);
+	online.Format(_T("åœ¨çº¿ä¸»æœºï¼š%d å°"), c);
 	szText = online.GetBuffer(online.GetLength());
 	::SendMessageW(m_statusBar.m_hWnd, SB_SETTEXTW, (WPARAM)1, (LPARAM)szText);
 	online.ReleaseBuffer();
@@ -389,10 +389,10 @@ void  CTeacherDlg::ShowStudentInfo()
 Function	: OnLoginOutStudent
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:09
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇµÇÂ¼Ñ§ÉúµÄID Öµ
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯ç™»å½•å­¦ç”Ÿçš„ID å€¼
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
 Return		: LRESULT
-Desc		: µÇÂ¼Ñ§ÉúÏÂÏß£¬ÏìÓ¦ID_STUDENTLOGINOUT ÏûÏ¢
+Desc		: ç™»å½•å­¦ç”Ÿä¸‹çº¿ï¼Œå“åº”ID_STUDENTLOGINOUT æ¶ˆæ¯
 ******************************************************************/
 LRESULT CTeacherDlg::OnLoginOutStudent(WPARAM wparam, LPARAM lparam)
 {
@@ -417,10 +417,10 @@ LRESULT CTeacherDlg::OnLoginOutStudent(WPARAM wparam, LPARAM lparam)
 Function	: OnSetBmpCompressData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:09
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇBMP½á¹¹Ìå¶ÔÏó
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯BMPç»“æ„ä½“å¯¹è±¡
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
 Return		: LRESULT
-Desc		: ½ÓÊÕÀ´×ÔÑ§Éú»úµÄÆÁÄ»Í¼ÏñÊı¾İID_SETBMPDATA ÏûÏ¢
+Desc		: æ¥æ”¶æ¥è‡ªå­¦ç”Ÿæœºçš„å±å¹•å›¾åƒæ•°æ®ID_SETBMPDATA æ¶ˆæ¯
 ******************************************************************/
 LRESULT CTeacherDlg::OnSetBmpCompressData(WPARAM wparam, LPARAM lparam)
 {
@@ -435,10 +435,10 @@ LRESULT CTeacherDlg::OnSetBmpCompressData(WPARAM wparam, LPARAM lparam)
 Function	: OnEndMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:10
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
 Return		: LRESULT
-Desc		: ½áÊø¶ÔÑ§Éú»úµÄ¼à¿ØÏìÓ¦ID_MONITOREND
+Desc		: ç»“æŸå¯¹å­¦ç”Ÿæœºçš„ç›‘æ§å“åº”ID_MONITOREND
 ******************************************************************/
 LRESULT CTeacherDlg::OnEndMonitor(WPARAM wparam, LPARAM lparam)
 {
@@ -455,7 +455,7 @@ LRESULT CTeacherDlg::OnEndMonitor(WPARAM wparam, LPARAM lparam)
 			break;
 		}
 	}
-	// Ê¹¹¤¾ßÀ¸µÄÆÁÄ»¼à¿Ø°´Å¥±äÁÁÇÒÓĞĞ§
+	// ä½¿å·¥å…·æ çš„å±å¹•ç›‘æ§æŒ‰é’®å˜äº®ä¸”æœ‰æ•ˆ
 	m_toolBar.GetToolBarCtrl().EnableButton(ID_SCREENMONITOR, true);
 	return 0;
 }
@@ -465,11 +465,11 @@ LRESULT CTeacherDlg::OnEndMonitor(WPARAM wparam, LPARAM lparam)
 Function	: OnCreatOneStudentDlg
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:10
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇÑ§ÉúÔÚÒ»¶Ô¶à¶Ô»°¿òÖĞÏÔÊ¾µÄĞòºÅ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯å­¦ç”Ÿåœ¨ä¸€å¯¹å¤šå¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„åºå·
 Return		: LRESULT
-Desc		: ÏìÓ¦Ò»¶Ô¶àÆÁÄ»¼à¿ØË«»÷Ñ¡ÖĞÑ§Éú»úÊµÏÖÒ»¶ÔÒ»ÆÁÄ»¼à¿Ø
-			  ÏìÓ¦ID_ONSTUINSCREEN ÏûÏ¢
+Desc		: å“åº”ä¸€å¯¹å¤šå±å¹•ç›‘æ§åŒå‡»é€‰ä¸­å­¦ç”Ÿæœºå®ç°ä¸€å¯¹ä¸€å±å¹•ç›‘æ§
+			  å“åº”ID_ONSTUINSCREEN æ¶ˆæ¯
 ******************************************************************/
 LRESULT CTeacherDlg::OnCreatOneStudentDlg(WPARAM wparam, LPARAM lparam)
 {
@@ -498,10 +498,10 @@ LRESULT CTeacherDlg::OnCreatOneStudentDlg(WPARAM wparam, LPARAM lparam)
 Function	: OnSetOneStuBmpCompressData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:11
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇBMP½á¹¹Ìå¶ÔÏó
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇÑ§ÉúÔÚÒ»¶Ô¶à¶Ô»°¿òÖĞÏÔÊ¾µÄĞòºÅ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯BMPç»“æ„ä½“å¯¹è±¡
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯å­¦ç”Ÿåœ¨ä¸€å¯¹å¤šå¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„åºå·
 Return		: LRESULT
-Desc		: ½ÓÊÕÀ´×ÔÑ§Éú»úµÄÆÁÄ»Í¼ÏñÊı¾İÏìÓ¦ÏûÏ¢ID_STEONSTUSCREENDATA
+Desc		: æ¥æ”¶æ¥è‡ªå­¦ç”Ÿæœºçš„å±å¹•å›¾åƒæ•°æ®å“åº”æ¶ˆæ¯ID_STEONSTUSCREENDATA
 ******************************************************************/
 LRESULT CTeacherDlg::OnSetOneStuBmpCompressData(WPARAM wparam, LPARAM lparam)
 {
@@ -516,10 +516,10 @@ LRESULT CTeacherDlg::OnSetOneStuBmpCompressData(WPARAM wparam, LPARAM lparam)
 Function	: OnEndOneStudentMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:11
-Parameter	: wparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÃ»ÓĞÊ¹ÓÃ
-Parameter	: lparam--ÏìÓ¦ÏûÏ¢Ê±´«ÈëµÄÊıÖµ£¬ÕâÀïÊÇÑ§ÉúÔÚÒ»¶Ô¶à¶Ô»°¿òÖĞÏÔÊ¾µÄĞòºÅ
+Parameter	: wparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ²¡æœ‰ä½¿ç”¨
+Parameter	: lparam--å“åº”æ¶ˆæ¯æ—¶ä¼ å…¥çš„æ•°å€¼ï¼Œè¿™é‡Œæ˜¯å­¦ç”Ÿåœ¨ä¸€å¯¹å¤šå¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„åºå·
 Return		: LRESULT
-Desc		: ½áÊøÒ»¶ÔÒ»ÆÁÄ»¼à¿Ø
+Desc		: ç»“æŸä¸€å¯¹ä¸€å±å¹•ç›‘æ§
 ******************************************************************/
 LRESULT CTeacherDlg::OnEndOneStudentMonitor(WPARAM wparam, LPARAM lparam)
 {
@@ -542,19 +542,19 @@ Function	: OnBeginScreenMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:11
 Return		: void
-Desc		: ÏìÓ¦ÏûÏ¢ID_ONSCREENMONITOR²¢µ÷ÓÃ·¢ËÍÆÁÄ»¼à¿ØÏûÏ¢µ½Ñ§Éú»úµÄ·½·¨
+Desc		: å“åº”æ¶ˆæ¯ID_ONSCREENMONITORå¹¶è°ƒç”¨å‘é€å±å¹•ç›‘æ§æ¶ˆæ¯åˆ°å­¦ç”Ÿæœºçš„æ–¹æ³•
 ******************************************************************/
 void CTeacherDlg::OnBeginScreenMonitor()
 {
 	int selCount = m_list.GetSelectedCount();
 	if (selCount > 2)
 	{
-		MessageBox(_T("Í¬Ê±¼à¿ØµÄÑ§Éú»ú×ÓÊıÁ¿²»ÄÜ³¬¹ı2Ì¨"));
+		MessageBox(_T("åŒæ—¶ç›‘æ§çš„å­¦ç”Ÿæœºå­æ•°é‡ä¸èƒ½è¶…è¿‡2å°"));
 		return;
 	}
 	if (0 == selCount)
 	{
-		MessageBox(_T("ÇëÑ¡ÔñÒª¼à¿ØµÄÑ§Éú»ú"));
+		MessageBox(_T("è¯·é€‰æ‹©è¦ç›‘æ§çš„å­¦ç”Ÿæœº"));
 		return;
 	}
 	DeletepScreenDlg();
@@ -566,9 +566,9 @@ void CTeacherDlg::OnBeginScreenMonitor()
 Function	: BeginScreenMonitor
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:12
-Parameter	: selCount--Òª¼à¿ØµÄÑ§Éú»úµÄÊıÁ¿
+Parameter	: selCount--è¦ç›‘æ§çš„å­¦ç”Ÿæœºçš„æ•°é‡
 Return		: void
-Desc		: ·¢ËÍ¿ªÊ¼ÆÁÄ»¼à¿ØÏûÏ¢µ½½ÌÊ¦»ú
+Desc		: å‘é€å¼€å§‹å±å¹•ç›‘æ§æ¶ˆæ¯åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 void CTeacherDlg::BeginScreenMonitor(int selCount)
 {
@@ -600,7 +600,7 @@ void CTeacherDlg::BeginScreenMonitor(int selCount)
 // 		if (m_list.GetCheck(i))
 // 		{
 // 			CString str;
-// 			str.Format(_T("µÚ%dĞĞµÄcheckboxÎªÑ¡ÖĞ×´Ì¬"), i);
+// 			str.Format(_T("ç¬¬%dè¡Œçš„checkboxä¸ºé€‰ä¸­çŠ¶æ€"), i);
 // 			AfxMessageBox(str);
 // //			int item = m_list.GetNextSelectedItem(pos_s);
 // // 			m_item[itemOrder] = i;
@@ -610,7 +610,7 @@ void CTeacherDlg::BeginScreenMonitor(int selCount)
 // 
 // 		}
 // 	}
-	// Ê¹¹¤¾ßÀ¸µÄÆÁÄ»¼à¿Ø°´Å¥±ä»ÒÇÒÎŞĞ§
+	// ä½¿å·¥å…·æ çš„å±å¹•ç›‘æ§æŒ‰é’®å˜ç°ä¸”æ— æ•ˆ
 	m_toolBar.GetToolBarCtrl().EnableButton(ID_SCREENMONITOR, false);
 }
 
@@ -620,7 +620,7 @@ Function	: OnMulticast
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:12
 Return		: void
-Desc		: ¿ªÊ¼¹ã²¥ÏìÓ¦ÏûÏ¢ID_MULTICAST
+Desc		: å¼€å§‹å¹¿æ’­å“åº”æ¶ˆæ¯ID_MULTICAST
 ******************************************************************/
 void CTeacherDlg::OnMulticast()
 {
@@ -643,7 +643,7 @@ Function	: OnMulticastStop
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:12
 Return		: void
-Desc		: Í£Ö¹¹Ø±ÕÏìÓ¦ÏûÏ¢ID_MULTICAST_STOP
+Desc		: åœæ­¢å…³é—­å“åº”æ¶ˆæ¯ID_MULTICAST_STOP
 ******************************************************************/
 void CTeacherDlg::OnMulticastStop()
 {
@@ -665,9 +665,9 @@ void CTeacherDlg::OnMulticastStop()
 Function	: OnSendScreenData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:13
-Parameter	: self--CTeacherDlgÀà¶ÔÏó
+Parameter	: self--CTeacherDlgç±»å¯¹è±¡
 Return		: DWORD WINAPI
-Desc		: ·¢ËÍ½ÌÊ¦»úÆÁÄ»Í¼ÏñÊı¾İÏß³ÌµÄµ÷ÓÃ·½·¨
+Desc		: å‘é€æ•™å¸ˆæœºå±å¹•å›¾åƒæ•°æ®çº¿ç¨‹çš„è°ƒç”¨æ–¹æ³•
 ******************************************************************/
 DWORD WINAPI CTeacherDlg::OnSendScreenData(LPVOID self)
 {
@@ -706,7 +706,7 @@ Function	: SendScreenData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:17
 Return		: void
-Desc		: ·¢ËÍ½ÌÊ¦»úÆÁÄ»Í¼ÏñÊı¾İµ½Ñ§Éú»ú
+Desc		: å‘é€æ•™å¸ˆæœºå±å¹•å›¾åƒæ•°æ®åˆ°å­¦ç”Ÿæœº
 ******************************************************************/
 void CTeacherDlg::SendScreenData()
 {
@@ -719,7 +719,7 @@ Function	: OnDestroy
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:17
 Return		: void
-Desc		: ´°¿Ú¹Ø±ÕÏú»Ù×îÖÕ´¦Àí
+Desc		: çª—å£å…³é—­é”€æ¯æœ€ç»ˆå¤„ç†
 ******************************************************************/
 void CTeacherDlg::OnDestroy()
 {
@@ -735,7 +735,7 @@ Function	: DeletepMulticast
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:16
 Return		: void
-Desc		: É¾³ı¹ã²¥¶ÔÏóÊÍ·ÅÄÚ´æ
+Desc		: åˆ é™¤å¹¿æ’­å¯¹è±¡é‡Šæ”¾å†…å­˜
 ******************************************************************/
 void CTeacherDlg::DeletepMulticast()
 {
@@ -752,7 +752,7 @@ Function	: DeletepScreenDlg
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:16
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CTeacherDlg::DeletepScreenDlg()
 {
@@ -769,7 +769,7 @@ Function	: DeletepOneStuScreenDlg
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:16
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CTeacherDlg::DeletepOneStuScreenDlg()
 {
@@ -786,7 +786,7 @@ Function	: DeleteSocketMsg
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:16
 Return		: void
-Desc		: ÊÍ·ÅSOCKET ×ÊÔ´
+Desc		: é‡Šæ”¾SOCKET èµ„æº
 ******************************************************************/
 void CTeacherDlg::DeleteSocketMsg()
 {
@@ -805,14 +805,14 @@ Date		: 2018-6-13 11:15
 Parameter	: pNMHDR
 Parameter	: pResult
 Return		: void
-Desc		: CListControlË«»÷ÏûÏ¢
+Desc		: CListControlåŒå‡»æ¶ˆæ¯
 ******************************************************************/
 void CTeacherDlg::OnNMClickList1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 // 	static bool isClick = false;
-// 	// Ã»ÓĞĞĞ±»Ñ¡ÖĞÔòiItm = -1
+// 	// æ²¡æœ‰è¡Œè¢«é€‰ä¸­åˆ™iItm = -1
 // 	if (pNMItemActivate->iItem != -1)
 // 	{
 // 		if (false == isClick)
@@ -837,7 +837,7 @@ Date		: 2018-6-13 11:13
 Parameter	: pNMHDR
 Parameter	: pResult
 Return		: void
-Desc		: CListControlË«»÷ÏûÏ¢
+Desc		: CListControlåŒå‡»æ¶ˆæ¯
 ******************************************************************/
 void CTeacherDlg::OnNMDblclkList1(NMHDR *pNMHDR, LRESULT *pResult)
 {

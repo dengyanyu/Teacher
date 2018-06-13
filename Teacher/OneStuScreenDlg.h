@@ -1,24 +1,24 @@
-#pragma once
+ï»¿#pragma once
 #include "zlib.h"
 #include "zconf.h"
 #pragma comment(lib,"zlib.lib")
 #include "Common.h"
 
-// COneStuScreenDlg ¶Ô»°¿ò
+// COneStuScreenDlg å¯¹è¯æ¡†
 
 class COneStuScreenDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(COneStuScreenDlg)
 
 public:
-	COneStuScreenDlg(CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êı
+	COneStuScreenDlg(CWnd* pParent = NULL);   // æ ‡å‡†æ„é€ å‡½æ•°
 	virtual ~COneStuScreenDlg();
 
-// ¶Ô»°¿òÊı¾İ
+// å¯¹è¯æ¡†æ•°æ®
 	enum { IDD = IDD_SCREEN_DIALOG1 };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV æ”¯æŒ
 
 	DECLARE_MESSAGE_MAP()
 private:

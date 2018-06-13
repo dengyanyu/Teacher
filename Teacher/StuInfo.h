@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "SocketCenter.h"
 #include "Common.h"
 class CStuInfo
@@ -15,9 +15,9 @@ public:
 
 	CString GetStuID() const;
 private:
-	// Ñ§ÉúĞÕÃû
+	// å­¦ç”Ÿå§“å
 	CString m_stuName;
-	// Ñ§ÉúµÄÑ§ºÅ
+	// å­¦ç”Ÿçš„å­¦å·
 	CString m_stuID;
 
 };

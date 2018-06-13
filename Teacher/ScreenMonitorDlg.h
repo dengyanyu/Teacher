@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 //////////////////////////////////////////////////////////////////////////
-// ZLIB ¿âÊ¹ÓÃµÄÍ·ÎÄ¼şÓë¶¯Ì¬Á´½Ó¿â
+// ZLIB åº“ä½¿ç”¨çš„å¤´æ–‡ä»¶ä¸åŠ¨æ€é“¾æ¥åº“
 #include "zlib.h"
 #include "zconf.h"
 #pragma comment(lib,"zlib.lib")
@@ -11,7 +11,7 @@
 #include "OneStuScreenDlg.h"
 
 
-// CScreenDlg ¶Ô»°¿ò
+// CScreenDlg å¯¹è¯æ¡†
 
 class CScreenMonitorDlg : public CDialogEx
 {
@@ -22,11 +22,11 @@ public:
 
 	virtual ~CScreenMonitorDlg();
 
-// ¶Ô»°¿òÊı¾İ
+// å¯¹è¯æ¡†æ•°æ®
 	enum { IDD = IDD_SCREEN_DIALOG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV æ”¯æŒ
 
 	DECLARE_MESSAGE_MAP()
 public:

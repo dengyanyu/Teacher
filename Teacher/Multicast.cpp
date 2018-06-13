@@ -1,9 +1,9 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Multicast.h"
 #include <io.h>
 #include <fcntl.h>
 //////////////////////////////////////////////////////////////////////////
-// ÄÚ´æĞ¹Â¶¼ì²âĞèÒªÌí¼ÓµÄÍ·ÎÄ¼ş
+// å†…å­˜æ³„éœ²æ£€æµ‹éœ€è¦æ·»åŠ çš„å¤´æ–‡ä»¶
 // #define _CRTDBG_MAP_ALLOC
 // #include <stdlib.h>
 // #include <crtdbg.h>
@@ -28,7 +28,7 @@ Function	: CleanData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:05
 Return		: void
-Desc		: ÊÍ·Å×ÊÔ´
+Desc		: é‡Šæ”¾èµ„æº
 ******************************************************************/
 void CMulticast::CleanData()
 {
@@ -45,7 +45,7 @@ Function	: CloseSocketMulticast
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:05
 Return		: void
-Desc		: ÊÍ·ÅSOCKET×ÊÔ´
+Desc		: é‡Šæ”¾SOCKETèµ„æº
 ******************************************************************/
 void CMulticast::CloseSocketMulticast()
 {
@@ -62,7 +62,7 @@ Function	: DeletepBmpTransData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:05
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ,·ÀÖ¹ÄÚ´æĞ¹Â©
+Desc		: é‡Šæ”¾new çš„å†…å­˜,é˜²æ­¢å†…å­˜æ³„æ¼
 ******************************************************************/
 void CMulticast::DeletepBmpTransData()
 {
@@ -79,7 +79,7 @@ Function	: DeletepBitMapInfo
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:04
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ,·ÀÖ¹ÄÚ´æĞ¹Â©
+Desc		: é‡Šæ”¾new çš„å†…å­˜,é˜²æ­¢å†…å­˜æ³„æ¼
 ******************************************************************/
 void CMulticast::DeletepBitMapInfo()
 {
@@ -96,18 +96,18 @@ Function	: GetDeskScreeData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:04
 Return		: void
-Desc		: »ñµÃ×ÀÃæµÄÍ¼ÏñÊı¾İ²¢µ÷ÓÃÑ¹Ëõ·½·¨
+Desc		: è·å¾—æ¡Œé¢çš„å›¾åƒæ•°æ®å¹¶è°ƒç”¨å‹ç¼©æ–¹æ³•
 ******************************************************************/
 void CMulticast::GetDeskScreeData()
 {
-	CDC memDC; //¶¨ÒåÒ»¸öÄÚ´æ»­²¼
+	CDC memDC; //å®šä¹‰ä¸€ä¸ªå†…å­˜ç”»å¸ƒ
 	CBitmap bmp;
 	BITMAP bitmap;
 	GetDeskScreenDC(memDC, bmp, bitmap);
 	SetCursorIcon(memDC);
-	// ×ÀÃæ½ØÍ¼µÄÔ­Ê¼Êı¾İÊı×é
+	// æ¡Œé¢æˆªå›¾çš„åŸå§‹æ•°æ®æ•°ç»„
 	BYTE* pBmpOriginalData = new BYTE[m_imgTotalSize];
-	// ½«Í¼ÏñµÄÊı¾İ¿½±´µ½pBmpOriginalData ÖĞ
+	// å°†å›¾åƒçš„æ•°æ®æ‹·è´åˆ°pBmpOriginalData ä¸­
 	if (::GetDIBits(memDC.m_hDC, bmp, 0, bitmap.bmHeight,
 		pBmpOriginalData, m_pBitMapInfo, DIB_RGB_COLORS) == 0)
 	{
@@ -119,7 +119,7 @@ void CMulticast::GetDeskScreeData()
 		return;
 	}
 
-	// Ñ¹Ëõ½ØÍ¼Êı¾İ
+	// å‹ç¼©æˆªå›¾æ•°æ®
 	CompressBmpData(pBmpOriginalData);
 
 	delete[] pBmpOriginalData;
@@ -134,17 +134,17 @@ void CMulticast::GetDeskScreeData()
 Function	: SetCursorIcon
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:04
-Parameter	: memDC--CDCÀà
+Parameter	: memDC--CDCç±»
 Return		: void
-Desc		: »ñµÃÊó±êĞÅÏ¢²¢»æÖÆµ½×ÀÃæÍ¼ÏñÖĞ
+Desc		: è·å¾—é¼ æ ‡ä¿¡æ¯å¹¶ç»˜åˆ¶åˆ°æ¡Œé¢å›¾åƒä¸­
 ******************************************************************/
 void CMulticast::SetCursorIcon(CDC &memDC)
 {
-	//»ñÈ¡µ±Ç°¹â±ê¼°ÆäÎ»ÖÃ
+	//è·å–å½“å‰å…‰æ ‡åŠå…¶ä½ç½®
 	HCURSOR hCursor = GetCursor();
 	POINT ptCursor;
 	GetCursorPos(&ptCursor);
-	//»ñÈ¡¹â±êµÄÍ¼±êÊı¾İ
+	//è·å–å…‰æ ‡çš„å›¾æ ‡æ•°æ®
 	ICONINFO IconInfo;
 	if (GetIconInfo(hCursor, &IconInfo))
 	{
@@ -155,7 +155,7 @@ void CMulticast::SetCursorIcon(CDC &memDC)
 		if (IconInfo.hbmColor != NULL)
 			DeleteObject(IconInfo.hbmColor);
 	}
-	//ÔÚ¼æÈİÉè±¸ÃèÊö±íÉÏ»­³ö¸Ã¹â±ê
+	//åœ¨å…¼å®¹è®¾å¤‡æè¿°è¡¨ä¸Šç”»å‡ºè¯¥å…‰æ ‡
 	DrawIconEx(
 		memDC.m_hDC,         // handle to device context
 		ptCursor.x, ptCursor.y,
@@ -172,20 +172,20 @@ void CMulticast::SetCursorIcon(CDC &memDC)
 Function	: GetDeskScreenDC
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:04
-Parameter	: memDC--CDCÀà
-Parameter	: bmp--Î»Í¼
-Parameter	: bitmap--Î»Í¼½á¹¹Ìå
+Parameter	: memDC--CDCç±»
+Parameter	: bmp--ä½å›¾
+Parameter	: bitmap--ä½å›¾ç»“æ„ä½“
 Return		: void
-Desc		: »ñµÃ×ÀÃæÍ¼Ïñ
+Desc		: è·å¾—æ¡Œé¢å›¾åƒ
 ******************************************************************/
 void CMulticast::GetDeskScreenDC(CDC &memDC, CBitmap &bmp, BITMAP& bitmap)
 {
-	CDC* pDeskDC = CWnd::GetDesktopWindow()->GetDC(); //»ñÈ¡×ÀÃæ»­²¼¶ÔÏó
-	int width = GetSystemMetrics(SM_CXSCREEN); //»ñÈ¡ÆÁÄ»µÄ¿í¶È
-	int height = GetSystemMetrics(SM_CYSCREEN); //»ñÈ¡ÆÁÄ»µÄ¸ß¶È
-	memDC.CreateCompatibleDC(pDeskDC); //´´½¨Ò»¸ö¼æÈİµÄ»­²¼
-	bmp.CreateCompatibleBitmap(pDeskDC, width, height); //´´½¨¼æÈİÎ»Í¼
-	memDC.SelectObject(&bmp); //Ñ¡ÖĞÎ»Í¼¶ÔÏó
+	CDC* pDeskDC = CWnd::GetDesktopWindow()->GetDC(); //è·å–æ¡Œé¢ç”»å¸ƒå¯¹è±¡
+	int width = GetSystemMetrics(SM_CXSCREEN); //è·å–å±å¹•çš„å®½åº¦
+	int height = GetSystemMetrics(SM_CYSCREEN); //è·å–å±å¹•çš„é«˜åº¦
+	memDC.CreateCompatibleDC(pDeskDC); //åˆ›å»ºä¸€ä¸ªå…¼å®¹çš„ç”»å¸ƒ
+	bmp.CreateCompatibleBitmap(pDeskDC, width, height); //åˆ›å»ºå…¼å®¹ä½å›¾
+	memDC.SelectObject(&bmp); //é€‰ä¸­ä½å›¾å¯¹è±¡
 	bmp.GetBitmap(&bitmap);
 
 	memDC.BitBlt(0, 0, width, height, pDeskDC, 0, 0, SRCCOPY);
@@ -199,19 +199,19 @@ void CMulticast::GetDeskScreenDC(CDC &memDC, CBitmap &bmp, BITMAP& bitmap)
 Function	: CompressBmpData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:03
-Parameter	: pBmpOriginalData--×ÀÃæÍ¼ÏñµÄÊı¾İ
+Parameter	: pBmpOriginalData--æ¡Œé¢å›¾åƒçš„æ•°æ®
 Return		: void
-Desc		: Ê¹ÓÃZLIB ¿âÑ¹Ëõ×ÀÃæÍ¼ÏñÊı¾İ
+Desc		: ä½¿ç”¨ZLIB åº“å‹ç¼©æ¡Œé¢å›¾åƒæ•°æ®
 ******************************************************************/
 void CMulticast::CompressBmpData(BYTE* pBmpOriginalData)
 {
 	BYTE* pCompressData = NULL;
 	//	m_compressBmpDataLen = 0;
-	// ĞèÒªÒ»¸ö×ã¹»´óµÄ¿Õ¼ä
+	// éœ€è¦ä¸€ä¸ªè¶³å¤Ÿå¤§çš„ç©ºé—´
 	m_compressBmpDataLen = (uLongf)((m_imgTotalSize + 12)*(100.1 / 100)) + 1;
 
 	pCompressData = new BYTE[m_compressBmpDataLen];
-	// ½«Êı¾İ½øĞĞÑ¹Ëõ²¢±£´æµ½pCompressData ÖĞ
+	// å°†æ•°æ®è¿›è¡Œå‹ç¼©å¹¶ä¿å­˜åˆ°pCompressData ä¸­
 	int err = compress(pCompressData, &m_compressBmpDataLen, pBmpOriginalData, m_imgTotalSize);
 
 	if (err != Z_OK) {
@@ -225,7 +225,7 @@ void CMulticast::CompressBmpData(BYTE* pBmpOriginalData)
 		delete[] m_pBmpTransData;
 		m_pBmpTransData = NULL;
 	}
-	// ½«Ñ¹ËõºóµÄÊı¾İ±£´æµ½m_pBmpTransData ÖĞ
+	// å°†å‹ç¼©åçš„æ•°æ®ä¿å­˜åˆ°m_pBmpTransData ä¸­
 	m_pBmpTransData = new BYTE[m_compressBmpDataLen];
 	memcpy(m_pBmpTransData, pCompressData, m_compressBmpDataLen);
 	delete[] pCompressData;
@@ -237,17 +237,17 @@ void CMulticast::CompressBmpData(BYTE* pBmpOriginalData)
 Function	: InitBITMAPINFO
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:03
-Parameter	: bitmap--Í¼ÏñµÄ´óĞ¡µÈĞÅÏ¢
-Parameter	: height--×ÀÃæµÄ¸ß
-Parameter	: width--×ÀÃæµÄ¿í
+Parameter	: bitmap--å›¾åƒçš„å¤§å°ç­‰ä¿¡æ¯
+Parameter	: height--æ¡Œé¢çš„é«˜
+Parameter	: width--æ¡Œé¢çš„å®½
 Return		: void
-Desc		: ³õÊ¼»¯Í¼ÏñµÄĞÅÏ¢Í·½á¹¹Ìå BITMAPINFO
+Desc		: åˆå§‹åŒ–å›¾åƒçš„ä¿¡æ¯å¤´ç»“æ„ä½“ BITMAPINFO
 ******************************************************************/
 void CMulticast::InitBITMAPINFO(BITMAP &bitmap, int height, int width)
 {
 	m_imgTotalSize = bitmap.bmWidthBytes * bitmap.bmHeight;
-	double paletteSize = 0; //¼ÇÂ¼µ÷É«°å´óĞ¡
-	if (bitmap.bmBitsPixel < 16) //ÅĞ¶ÏÊÇ·ñÎªÕæ²ÊÉ«Î»Í¼
+	double paletteSize = 0; //è®°å½•è°ƒè‰²æ¿å¤§å°
+	if (bitmap.bmBitsPixel < 16) //åˆ¤æ–­æ˜¯å¦ä¸ºçœŸå½©è‰²ä½å›¾
 	{
 		//paletteSize = pow(2.0, (double)bitmap.bmBitsPixel*sizeof(RGBQUAD));
 		paletteSize = (1 << bitmap.bmBitsPixel)*sizeof(RGBQUAD);
@@ -272,10 +272,10 @@ void CMulticast::InitBITMAPINFO(BITMAP &bitmap, int height, int width)
 Function	: SendScreenBmpData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:02
-Parameter	: multicastSocket--¹ã²¥SOCKET
-Parameter	: addr--SOCKADDR_IN×é²¥¼¼Êõ·¢ËÍÊı¾İÊ±ĞèÒªÊ¹ÓÃ
+Parameter	: multicastSocket--å¹¿æ’­SOCKET
+Parameter	: addr--SOCKADDR_INç»„æ’­æŠ€æœ¯å‘é€æ•°æ®æ—¶éœ€è¦ä½¿ç”¨
 Return		: void
-Desc		: ·¢ËÍÆÁÄ»Í¼ÏñÊı¾İµ½Ñ§Éú»ú
+Desc		: å‘é€å±å¹•å›¾åƒæ•°æ®åˆ°å­¦ç”Ÿæœº
 ******************************************************************/
 void CMulticast::SendScreenBmpData(SOCKET multicastSocket, SOCKADDR_IN addr)
 {
@@ -296,11 +296,11 @@ void CMulticast::SendScreenBmpData(SOCKET multicastSocket, SOCKADDR_IN addr)
 Function	: SetBmpData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:02
-Parameter	: multicastData--ĞèÒª±»¸³ÖµµÄMULTICASTDATA ½á¹¹Ìå 
-Parameter	: i--·ù×ÀÃæÍ¼ÏñµÄµÚ¼¸´Î´«Êä
-Parameter	: count--·ù×ÀÃæÍ¼ÏñĞèÒª±»´«ÊäµÄ´ÎÊı
+Parameter	: multicastData--éœ€è¦è¢«èµ‹å€¼çš„MULTICASTDATA ç»“æ„ä½“ 
+Parameter	: i--å¹…æ¡Œé¢å›¾åƒçš„ç¬¬å‡ æ¬¡ä¼ è¾“
+Parameter	: count--å¹…æ¡Œé¢å›¾åƒéœ€è¦è¢«ä¼ è¾“çš„æ¬¡æ•°
 Return		: void
-Desc		: ·¢ËÍÆÁÄ»Í¼ÏñÊı¾İµ½Ñ§Éú»ú
+Desc		: å‘é€å±å¹•å›¾åƒæ•°æ®åˆ°å­¦ç”Ÿæœº
 ******************************************************************/
 void CMulticast::SetBmpData(MULTICASTDATA &multicastData, int i, int count)
 {
@@ -309,7 +309,7 @@ void CMulticast::SetBmpData(MULTICASTDATA &multicastData, int i, int count)
 	UINT beginPos = i * MULTICAST_TRANS_SIZE;
 	multicastData.beginPos = beginPos;
 	multicastData.ID = i;
-	if (i == count - 1) // ×îºóÒ»´Î·¢ËÍÊı¾İ
+	if (i == count - 1) // æœ€åä¸€æ¬¡å‘é€æ•°æ®
 	{
 		multicastData.isShow = true;
 		multicastData.infoType = 2;
@@ -329,18 +329,18 @@ void CMulticast::SetBmpData(MULTICASTDATA &multicastData, int i, int count)
 Function	: InitBmpData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:00
-Parameter	: multicastData--×ÀÃæÍ¼ÏñÊı¾İµÄ½á¹¹Ìå
-Return		: int--Ò»·ù×ÀÃæÍ¼ÏñĞèÒª±»´«ÊäµÄ´ÎÊı
-Desc		: Îª×ÀÃæÍ¼Ïñ½á¹¹ÌåBMPDATA³õÊ¼»¯Ò»Ğ©±ØÒªĞÅÏ¢
+Parameter	: multicastData--æ¡Œé¢å›¾åƒæ•°æ®çš„ç»“æ„ä½“
+Return		: int--ä¸€å¹…æ¡Œé¢å›¾åƒéœ€è¦è¢«ä¼ è¾“çš„æ¬¡æ•°
+Desc		: ä¸ºæ¡Œé¢å›¾åƒç»“æ„ä½“BMPDATAåˆå§‹åŒ–ä¸€äº›å¿…è¦ä¿¡æ¯
 ******************************************************************/
 int CMulticast::InitBmpData(MULTICASTDATA &multicastData)
 {
 	memset(&multicastData, 0, sizeof(MULTICASTDATA));
-	//Í¼ÏñĞÅÏ¢Í·
+	//å›¾åƒä¿¡æ¯å¤´
 	memcpy(&multicastData.bmpHeadInfo, m_pBitMapInfo, m_bmpHeadTotalSize);
 	multicastData.bmpCompressSize = m_compressBmpDataLen;
 	multicastData.isShow = false;
-	// ·¢ËÍÍ¼ÏñÊı¾İ
+	// å‘é€å›¾åƒæ•°æ®
 	int count = int(ceil(double(m_compressBmpDataLen) / MULTICAST_TRANS_SIZE));
 
 	//		multicastData.isShow = false;
@@ -355,7 +355,7 @@ Function	: SendScreenData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018/06/13
 Return		: void
-Desc		: ²»¶Ï·¢ËÍÊı¾İµ½Ñ§Éú»ú
+Desc		: ä¸æ–­å‘é€æ•°æ®åˆ°å­¦ç”Ÿæœº
 ******************************************************************/
 void CMulticast::SendScreenData()
 {
@@ -379,9 +379,9 @@ void CMulticast::SendScreenData()
 Function	: SetIsMulticastEnd
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018/06/13
-Parameter	: IsMulticastEnd--trueÔËĞĞÏß³Ì£¬falseÍ£Ö¹Ïß³Ì
+Parameter	: IsMulticastEnd--trueè¿è¡Œçº¿ç¨‹ï¼Œfalseåœæ­¢çº¿ç¨‹
 Return		: void
-Desc		: ·¢ËÍÍ¼ÏñÊı¾İµ½Ñ§Éú»úµÄÏß³ÌÊÇ·ñ½áÊøµÄ±êÖ¾
+Desc		: å‘é€å›¾åƒæ•°æ®åˆ°å­¦ç”Ÿæœºçš„çº¿ç¨‹æ˜¯å¦ç»“æŸçš„æ ‡å¿—
 ******************************************************************/
 void CMulticast::SetIsMulticastEnd(bool IsMulticastEnd)
 {

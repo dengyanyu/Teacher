@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "StuInfo.h"
 
 
@@ -16,9 +16,9 @@ CStuInfo::~CStuInfo()
 Function	: SendStuInfoReq
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:24
-Parameter	: socket--Á¬½ÓÑ§Éú»úSOCKET 
+Parameter	: socket--è¿æ¥å­¦ç”ŸæœºSOCKET 
 Return		: void
-Desc		: ÏòÇëÇóÑ§Éú»úµÇÂ¼ĞÅÏ¢
+Desc		: å‘è¯·æ±‚å­¦ç”Ÿæœºç™»å½•ä¿¡æ¯
 ******************************************************************/
 void CStuInfo::SendStuInfoReq(SOCKET socket)
 {
@@ -31,9 +31,9 @@ void CStuInfo::SendStuInfoReq(SOCKET socket)
 Function	: GetStuInfo
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:25
-Parameter	: socket--Á¬½ÓÑ§Éú»úSOCKET
+Parameter	: socket--è¿æ¥å­¦ç”ŸæœºSOCKET
 Return		: void
-Desc		: »ñµÃÑ§ÉúµÄµÇÂ¼ĞÅÏ¢
+Desc		: è·å¾—å­¦ç”Ÿçš„ç™»å½•ä¿¡æ¯
 ******************************************************************/
 void CStuInfo::GetStuInfo(SOCKET socket)
 {
@@ -53,7 +53,7 @@ Function	: GetStuName
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:25
 Return		: CString
-Desc		: »ñµÃÑ§ÉúµÄµÇÂ¼Ãû³Æ
+Desc		: è·å¾—å­¦ç”Ÿçš„ç™»å½•åç§°
 ******************************************************************/
 CString CStuInfo::GetStuName() const
 {
@@ -66,7 +66,7 @@ Function	: GetStuID
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:25
 Return		: CString
-Desc		: »ñµÃÑ§ÉúµÄµÇÂ¼ID
+Desc		: è·å¾—å­¦ç”Ÿçš„ç™»å½•ID
 ******************************************************************/
 CString CStuInfo::GetStuID() const
 {

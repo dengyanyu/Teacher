@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 //////////////////////////////////////////////////////////////////////////
-// ZLIB¿â
+// ZLIBåº“
 #include "zlib.h"
 #include "zconf.h"
 #pragma comment(lib,"zlib.lib")

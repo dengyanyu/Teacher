@@ -1,10 +1,10 @@
-// TeacherDlg.h : Í·ÎÄ¼ş
+ï»¿// TeacherDlg.h : å¤´æ–‡ä»¶
 //
 
 #pragma once
 #include "afxcmn.h"
 //////////////////////////////////////////////////////////////////////////
-// ZLIB ¿âµÄÍ·ÎÄ¼ş
+// ZLIB åº“çš„å¤´æ–‡ä»¶
 #include "zlib.h"
 #include "zconf.h"
 #pragma comment(lib,"zlib.lib")
@@ -12,30 +12,30 @@
 #include "ScreenMonitorDlg.h"
 #include "Multicast.h"
 
-// ÕâÀïµÄID ÊÇÓë¹¤¾ßÀ¸²úÉúÊ±¸³ÖµµÄID ÊÇ¶ÔÓ¦µÄ
+// è¿™é‡Œçš„ID æ˜¯ä¸å·¥å…·æ äº§ç”Ÿæ—¶èµ‹å€¼çš„ID æ˜¯å¯¹åº”çš„
 #define ID_MULTICAST 1001
 #define ID_MULTICAST_STOP 1003
 #define ID_SCREENMONITOR	 1002
 
 
-// CTeacherDlg ¶Ô»°¿ò
+// CTeacherDlg å¯¹è¯æ¡†
 class CTeacherDlg : public CDialogEx
 {
-	// ¹¹Ôì
+	// æ„é€ 
 public:
-	CTeacherDlg(CWnd* pParent = NULL);	// ±ê×¼¹¹Ôìº¯Êı
+	CTeacherDlg(CWnd* pParent = NULL);	// æ ‡å‡†æ„é€ å‡½æ•°
 
-	// ¶Ô»°¿òÊı¾İ
+	// å¯¹è¯æ¡†æ•°æ®
 	enum { IDD = IDD_TEACHER_DIALOG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV æ”¯æŒ
 
-	// ÊµÏÖ
+	// å®ç°
 protected:
 	HICON m_hIcon;
 
-	// Éú³ÉµÄÏûÏ¢Ó³Éäº¯Êı
+	// ç”Ÿæˆçš„æ¶ˆæ¯æ˜ å°„å‡½æ•°
 	virtual BOOL OnInitDialog();
 
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
@@ -80,7 +80,7 @@ private:
 	CRect m_rect;
 	SOCKET m_socketMsg;
 	CScreenMonitorDlg* m_pScreenDlg;
-	// ¼ÇÂ¼±»¼à¿ØµÄÑ§Éú»úµÄID
+	// è®°å½•è¢«ç›‘æ§çš„å­¦ç”Ÿæœºçš„ID
 	int m_item[MAX_MONITOR];
 	COneStuScreenDlg* m_oneStuScreenDlg;
 	CMulticast m_multicast;

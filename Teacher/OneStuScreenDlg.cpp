@@ -1,10 +1,10 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Teacher.h"
 #include "OneStuScreenDlg.h"
 #include "afxdialogex.h"
 
 
-// COneStuScreenDlg ¶Ô»°¿ò
+// COneStuScreenDlg å¯¹è¯æ¡†
 
 IMPLEMENT_DYNAMIC(COneStuScreenDlg, CDialogEx)
 
@@ -30,7 +30,7 @@ BEGIN_MESSAGE_MAP(COneStuScreenDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// COneStuScreenDlg ÏûÏ¢´¦Àí³ÌÐò
+// COneStuScreenDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 void COneStuScreenDlg::ShowBmp(BMP* bmp, int itemOrder)
 {
 	m_itemOrder = itemOrder;
@@ -40,7 +40,7 @@ void COneStuScreenDlg::ShowBmp(BMP* bmp, int itemOrder)
 	HDC hdc = GetDC()->m_hDC;
 	if (hdc != NULL)
 	{
-		::SetStretchBltMode(hdc, STRETCH_HALFTONE); //½â¾öÊ§ÕæÎÊÌâ
+		::SetStretchBltMode(hdc, STRETCH_HALFTONE); //è§£å†³å¤±çœŸé—®é¢˜
 		::StretchDIBits(hdc,
 			0,
 			0,
@@ -50,8 +50,8 @@ void COneStuScreenDlg::ShowBmp(BMP* bmp, int itemOrder)
 			0,
 			bmp->pBMPINFO->bmiHeader.biWidth,
 			bmp->pBMPINFO->bmiHeader.biHeight,
-			bmpShowData, //Î»Í¼Êý¾Ý
-			bmp->pBMPINFO, //BITMAPINFO Î»Í¼ÐÅÏ¢Í·
+			bmpShowData, //ä½å›¾æ•°æ®
+			bmp->pBMPINFO, //BITMAPINFO ä½å›¾ä¿¡æ¯å¤´
 			DIB_RGB_COLORS,
 			SRCCOPY
 			);
@@ -66,7 +66,7 @@ void COneStuScreenDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
-	// TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
+	// TODO:  åœ¨æ­¤å¤„æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç 
 	this->GetClientRect(m_clientRect);
 }
 
@@ -96,7 +96,7 @@ BYTE* COneStuScreenDlg::UnCompressData(uLongf biSizeImage, uLongf bmpCompressSiz
 
 void COneStuScreenDlg::OnClose()
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO:  åœ¨æ­¤æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç å’Œ/æˆ–è°ƒç”¨é»˜è®¤å€¼
 	::SendMessage(m_pParentWnd->m_hWnd, ID_ONESTUINSCREENEND, 0, (LPARAM)&m_itemOrder);
 	CDialogEx::OnClose();
 }

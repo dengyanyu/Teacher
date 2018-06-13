@@ -1,9 +1,9 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ScreenMonitorDlg.h"
 #include "afxdialogex.h"
 //#include "ItemData.h"
 
-// CScreenDlg ¶Ô»°¿ò
+// CScreenDlg å¯¹è¯æ¡†
 
 IMPLEMENT_DYNAMIC(CScreenMonitorDlg, CDialogEx)
 
@@ -25,7 +25,7 @@ Function	: CleanData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:47
 Return		: void
-Desc		: ÇåÀí
+Desc		: æ¸…ç†
 ******************************************************************/
 void CScreenMonitorDlg::CleanData()
 {
@@ -44,7 +44,7 @@ Function	: DeletepBitMapInfo
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:47
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CScreenMonitorDlg::DeletepBitMapInfo()
 {
@@ -61,7 +61,7 @@ Function	: DeletepBmpCompressData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:48
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CScreenMonitorDlg::DeletepBmpCompressData()
 {
@@ -86,11 +86,11 @@ BEGIN_MESSAGE_MAP(CScreenMonitorDlg, CDialogEx)
 	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
-// CScreenDlg ÏûÏ¢´¦Àí³ÌÐò
+// CScreenDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 void CScreenMonitorDlg::OnClose()
 {
-	// ·¢ËÍÏûÏ¢¸øTeacherDlg ÈÃËü·¢ËÍ½áÊøÆÁÄ»¼à¿ØµÄÏûÏ¢¸øÑ§Éú»ú
+	// å‘é€æ¶ˆæ¯ç»™TeacherDlg è®©å®ƒå‘é€ç»“æŸå±å¹•ç›‘æŽ§çš„æ¶ˆæ¯ç»™å­¦ç”Ÿæœº
 	::SendMessage(m_pParentWnd->m_hWnd, ID_MONITOREND, 0, 0);
 	DestroyWindow();
 	CDialogEx::OnClose();
@@ -103,8 +103,8 @@ void CScreenMonitorDlg::OnClose()
 
 BOOL CScreenMonitorDlg::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO:  ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
-	// ÆÁ±ÎESC ÓëENTER ¼ü
+	// TODO:  åœ¨æ­¤æ·»åŠ ä¸“ç”¨ä»£ç å’Œ/æˆ–è°ƒç”¨åŸºç±»
+	// å±è”½ESC ä¸ŽENTER é”®
 	if (WM_KEYDOWN == pMsg->message)
 	{
 		int nVirtKey = (int)pMsg->wParam;
@@ -127,7 +127,7 @@ void CScreenMonitorDlg::OnSize(UINT nType, int cx, int cy)
 	m_blockHeight = m_rect.Height() / m_widthCount;
 }
 
-// void CScreenMonitorDlg::SetScreenData() //ÏÔÊ¾Í¼Ïñ
+// void CScreenMonitorDlg::SetScreenData() //æ˜¾ç¤ºå›¾åƒ
 // {
 //
 // }
@@ -137,10 +137,10 @@ void CScreenMonitorDlg::OnSize(UINT nType, int cx, int cy)
 Function	: ShowBmp
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:48
-Parameter	: bmp--½á¹¹Ìå£¬Àï±ß±£´æÁËÑ§Éú»ú×ÀÃæ½ØÍ¼µÄÊý¾Ý
-Parameter	: itemOrder--Ñ§Éú»úµÄË³Ðò£¬È¡ÖµÎª0-15¶øÇÒÊÇÁ¬ÐøµÄ
+Parameter	: bmp--ç»“æž„ä½“ï¼Œé‡Œè¾¹ä¿å­˜äº†å­¦ç”Ÿæœºæ¡Œé¢æˆªå›¾çš„æ•°æ®
+Parameter	: itemOrder--å­¦ç”Ÿæœºçš„é¡ºåºï¼Œå–å€¼ä¸º0-15è€Œä¸”æ˜¯è¿žç»­çš„
 Return		: void
-Desc		: ÏÔÊ¾Ñ§Éú»úµÄ×ÀÃæ
+Desc		: æ˜¾ç¤ºå­¦ç”Ÿæœºçš„æ¡Œé¢
 ******************************************************************/
 void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 {
@@ -154,7 +154,7 @@ void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 	HDC hdc = GetDC()->m_hDC;
 	if (hdc != NULL)
 	{
-		::SetStretchBltMode(hdc, STRETCH_HALFTONE); //½â¾öÊ§ÕæÎÊÌâ
+		::SetStretchBltMode(hdc, STRETCH_HALFTONE); //è§£å†³å¤±çœŸé—®é¢˜
 		::StretchDIBits(hdc,
 			xDest,
 			yDest,
@@ -164,8 +164,8 @@ void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 			0,
 			bmp->pBMPINFO->bmiHeader.biWidth,
 			bmp->pBMPINFO->bmiHeader.biHeight,
-			m_pBmpCompressData, //Î»Í¼Êý¾Ý
-			bmp->pBMPINFO, //BITMAPINFO Î»Í¼ÐÅÏ¢Í·
+			m_pBmpCompressData, //ä½å›¾æ•°æ®
+			bmp->pBMPINFO, //BITMAPINFO ä½å›¾ä¿¡æ¯å¤´
 			DIB_RGB_COLORS,
 			SRCCOPY
 			);
@@ -200,11 +200,11 @@ void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 Function	: DetermineShowRegion
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 11:49
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÖÐÏÔÊ¾µÄË³ÐòÈ¡ÖµÎª0-15
-Parameter	: xDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄx×ø±ê
-Parameter	: yDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄy×ø±ê
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„é¡ºåºå–å€¼ä¸º0-15
+Parameter	: xDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„xåæ ‡
+Parameter	: yDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„yåæ ‡
 Return		: void
-Desc		: ·ÖÅäÃ¿¸öÑ§Éú»úÏÔÊ¾ÆÁÄ»µÄÎ»ÖÃ
+Desc		: åˆ†é…æ¯ä¸ªå­¦ç”Ÿæœºæ˜¾ç¤ºå±å¹•çš„ä½ç½®
 ******************************************************************/
 void CScreenMonitorDlg::DetermineShowRegion(int itemOrder, int &xDest, int &yDest)
 {
@@ -232,11 +232,11 @@ void CScreenMonitorDlg::DetermineShowRegion(int itemOrder, int &xDest, int &yDes
 Function	: SixteenRegion
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:30
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÖÐÏÔÊ¾µÄË³ÐòÈ¡ÖµÎª0-15
-Parameter	: xDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄx×ø±ê
-Parameter	: yDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄy×ø±ê
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„é¡ºåºå–å€¼ä¸º0-15
+Parameter	: xDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„xåæ ‡
+Parameter	: yDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„yåæ ‡
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿ÉÙÓÚ»òµÈÓÚ16Ì¨
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡å°‘äºŽæˆ–ç­‰äºŽ16å°
 ******************************************************************/
 void CScreenMonitorDlg::SixteenRegion(int itemOrder, int &xDest, int &yDest)
 {
@@ -254,11 +254,11 @@ void CScreenMonitorDlg::SixteenRegion(int itemOrder, int &xDest, int &yDest)
 Function	: NineRegion
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:31
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÖÐÏÔÊ¾µÄË³ÐòÈ¡ÖµÎª0-8
-Parameter	: xDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄx×ø±ê
-Parameter	: yDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄy×ø±ê
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„é¡ºåºå–å€¼ä¸º0-8
+Parameter	: xDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„xåæ ‡
+Parameter	: yDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„yåæ ‡
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿ÉÙÓÚ»òµÈÓÚ9Ì¨
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡å°‘äºŽæˆ–ç­‰äºŽ9å°
 ******************************************************************/
 void CScreenMonitorDlg::NineRegion(int itemOrder, int &xDest, int &yDest)
 {
@@ -276,11 +276,11 @@ void CScreenMonitorDlg::NineRegion(int itemOrder, int &xDest, int &yDest)
 Function	: FourRegion
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:32
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÖÐÏÔÊ¾µÄË³ÐòÈ¡ÖµÎª0-3
-Parameter	: xDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄy×ø±ê
-Parameter	: yDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄx×ø±ê
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„é¡ºåºå–å€¼ä¸º0-3
+Parameter	: xDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„yåæ ‡
+Parameter	: yDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„xåæ ‡
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿ÉÙÓÚ»òµÈÓÚ4Ì¨
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡å°‘äºŽæˆ–ç­‰äºŽ4å°
 ******************************************************************/
 void CScreenMonitorDlg::FourRegion(int itemOrder, int &xDest, int &yDest)
 {
@@ -298,11 +298,11 @@ void CScreenMonitorDlg::FourRegion(int itemOrder, int &xDest, int &yDest)
 Function	: OneRegion
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:32
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÖÐÏÔÊ¾µÄË³ÐòÈ¡ÖµÎª0
-Parameter	: xDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄx×ø±ê
-Parameter	: yDest--ÏÔÊ¾ÔÚ¶Ô»°¿òµÄ×óÉÏ½ÇµÄy×ø±ê
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸­æ˜¾ç¤ºçš„é¡ºåºå–å€¼ä¸º0
+Parameter	: xDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„xåæ ‡
+Parameter	: yDest--æ˜¾ç¤ºåœ¨å¯¹è¯æ¡†çš„å·¦ä¸Šè§’çš„yåæ ‡
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿µÈÓÚ1Ì¨
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡ç­‰äºŽ1å°
 ******************************************************************/
 void CScreenMonitorDlg::OneRegion(int itemOrder, int &xDest, int &yDest)
 {
@@ -318,11 +318,11 @@ void CScreenMonitorDlg::OneRegion(int itemOrder, int &xDest, int &yDest)
 Function	: UnCompressData
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:33
-Parameter	: biSizeImage--Ñ¹ËõÇ°µÄÍ¼Ïñ´óÐ¡
-Parameter	: bmpCompressSize--Ñ¹ËõºóµÄÍ¼Ïñ´óÐ¡
-Parameter	: pBmpCompressData--Ñ¹ËõµÄÍ¼ÏñÊý¾Ý
+Parameter	: biSizeImage--åŽ‹ç¼©å‰çš„å›¾åƒå¤§å°
+Parameter	: bmpCompressSize--åŽ‹ç¼©åŽçš„å›¾åƒå¤§å°
+Parameter	: pBmpCompressData--åŽ‹ç¼©çš„å›¾åƒæ•°æ®
 Return		: BYTE*
-Desc		: ½âÑ¹´ÓÑ§Éú»ú½ÓÊÕµ½µÄÆÁÄ»Í¼ÏñÊý¾Ý
+Desc		: è§£åŽ‹ä»Žå­¦ç”ŸæœºæŽ¥æ”¶åˆ°çš„å±å¹•å›¾åƒæ•°æ®
 ******************************************************************/
 BYTE* CScreenMonitorDlg::UnCompressData(uLongf biSizeImage, uLongf bmpCompressSize, BYTE* pBmpCompressData)
 {
@@ -378,7 +378,7 @@ BOOL CScreenMonitorDlg::OnInitDialog()
 
 void CScreenMonitorDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO:  åœ¨æ­¤æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç å’Œ/æˆ–è°ƒç”¨é»˜è®¤å€¼
 	if (nSBCode != SB_ENDSCROLL)
 	{
 		SCROLLINFO hStructure;
@@ -392,7 +392,7 @@ void CScreenMonitorDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBa
 
 void CScreenMonitorDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO:  åœ¨æ­¤æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç å’Œ/æˆ–è°ƒç”¨é»˜è®¤å€¼
 	if (nSBCode != SB_ENDSCROLL)
 	{
 		SCROLLINFO vStructure;
@@ -409,10 +409,10 @@ void CScreenMonitorDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBa
 Function	: FourRegionClk
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:33
-Parameter	: point--Êó±ê×ø±ê
-Parameter	: itemOrder--Ñ§Éú»úÏÔÊ¾µÄË³Ðò0-3
+Parameter	: point--é¼ æ ‡åæ ‡
+Parameter	: itemOrder--å­¦ç”Ÿæœºæ˜¾ç¤ºçš„é¡ºåº0-3
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿ÉÙÓÚµÈÓÚ4Ì¨£¬ÅÐ¶ÏÑ§Éú»úµã»÷µÄÊÇÄÄ¸öÑ§Éú»ú
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡å°‘äºŽç­‰äºŽ4å°ï¼Œåˆ¤æ–­å­¦ç”Ÿæœºç‚¹å‡»çš„æ˜¯å“ªä¸ªå­¦ç”Ÿæœº
 ******************************************************************/
 void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder)
 {
@@ -431,10 +431,10 @@ void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder)
 Function	: NineRegionClk
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:34
-Parameter	: point--Êó±ê×ø±ê
-Parameter	: itemOrder--Ñ§Éú»úÏÔÊ¾µÄË³Ðò0-8
+Parameter	: point--é¼ æ ‡åæ ‡
+Parameter	: itemOrder--å­¦ç”Ÿæœºæ˜¾ç¤ºçš„é¡ºåº0-8
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿ÉÙÓÚµÈÓÚ9Ì¨£¬ÅÐ¶Ïµã»÷µÄÊÇÄÄ¸öÑ§Éú»ú
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡å°‘äºŽç­‰äºŽ9å°ï¼Œåˆ¤æ–­ç‚¹å‡»çš„æ˜¯å“ªä¸ªå­¦ç”Ÿæœº
 ******************************************************************/
 void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder)
 {
@@ -457,10 +457,10 @@ void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder)
 Function	: SixteenRegionClk
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:34
-Parameter	: point--Êó±ê×ø±ê
-Parameter	: itemOrder--Ñ§Éú»úÏÔÊ¾µÄË³Ðò0-15
+Parameter	: point--é¼ æ ‡åæ ‡
+Parameter	: itemOrder--å­¦ç”Ÿæœºæ˜¾ç¤ºçš„é¡ºåº0-15
 Return		: void
-Desc		: Í¬Ê±¼à¿ØµÄÑ§Éú»úµÄÊýÁ¿ÉÙÓÚµÈÓÚ16Ì¨£¬ÅÐ¶Ïµã»÷µÄÊÇÄÄ¸öÑ§Éú»ú
+Desc		: åŒæ—¶ç›‘æŽ§çš„å­¦ç”Ÿæœºçš„æ•°é‡å°‘äºŽç­‰äºŽ16å°ï¼Œåˆ¤æ–­ç‚¹å‡»çš„æ˜¯å“ªä¸ªå­¦ç”Ÿæœº
 ******************************************************************/
 void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder)
 {
@@ -487,11 +487,11 @@ void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder)
 Function	: FourRegionClk
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:35
-Parameter	: point--Êó±êµã»÷µÄÎ»ÖÃ
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÉÏÏÔÊ¾µÄË³Ðò
-Parameter	: offset--Æ«ÒÆµÚÒ»ÁÐµÄÎ»ÖÃÈ¡ÖµÎª0»ò1
+Parameter	: point--é¼ æ ‡ç‚¹å‡»çš„ä½ç½®
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸Šæ˜¾ç¤ºçš„é¡ºåº
+Parameter	: offset--åç§»ç¬¬ä¸€åˆ—çš„ä½ç½®å–å€¼ä¸º0æˆ–1
 Return		: void
-Desc		: µ±offset = 0£¬µã»÷µÄÑ§Éú»úÊÇ0»ò2£¬µ±offset = 1 µã»÷µÄÑ§Éú»úÊÇ1 »ò3
+Desc		: å½“offset = 0ï¼Œç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯0æˆ–2ï¼Œå½“offset = 1 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯1 æˆ–3
 ******************************************************************/
 void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder, int offset)
 {
@@ -510,13 +510,13 @@ void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder, int offset)
 Function	: NineRegionClk
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:35
-Parameter	: point--Êó±êµã»÷µÄÎ»ÖÃ
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÉÏÏÔÊ¾µÄË³Ðò
-Parameter	: offset--Æ«ÒÆµÚÒ»ÁÐµÄÎ»ÖÃÈ¡ÖµÎª0¡¢1»ò2
+Parameter	: point--é¼ æ ‡ç‚¹å‡»çš„ä½ç½®
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸Šæ˜¾ç¤ºçš„é¡ºåº
+Parameter	: offset--åç§»ç¬¬ä¸€åˆ—çš„ä½ç½®å–å€¼ä¸º0ã€1æˆ–2
 Return		: void
-Desc		: µ±offset = 0 µã»÷µÄÑ§Éú»úÊÇ0¡¢3»ò6£¬
-			  µ±offset = 1 µã»÷µÄÑ§Éú»úÊÇ1¡¢4»ò7
-			  µ±offset = 2 µã»÷µÄÑ§Éú»úÊÇ2¡¢5»ò8
+Desc		: å½“offset = 0 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯0ã€3æˆ–6ï¼Œ
+			  å½“offset = 1 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯1ã€4æˆ–7
+			  å½“offset = 2 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯2ã€5æˆ–8
 ******************************************************************/
 void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder, int offset)
 {
@@ -532,14 +532,14 @@ void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder, int offset)
 Function	: SixteenRegionClk
 Author		: shiyunjin(luoyibin_001@163.com)
 Date		: 2018-6-13 13:36
-Parameter	: point--Êó±êµã»÷µÄÎ»ÖÃ
-Parameter	: itemOrder--Ñ§Éú»úÔÚ¶Ô»°¿òÉÏÏÔÊ¾µÄË³Ðò
-Parameter	: offset--Æ«ÒÆµÚÒ»ÁÐµÄÎ»ÖÃÈ¡ÖµÎª0¡¢1»ò2
+Parameter	: point--é¼ æ ‡ç‚¹å‡»çš„ä½ç½®
+Parameter	: itemOrder--å­¦ç”Ÿæœºåœ¨å¯¹è¯æ¡†ä¸Šæ˜¾ç¤ºçš„é¡ºåº
+Parameter	: offset--åç§»ç¬¬ä¸€åˆ—çš„ä½ç½®å–å€¼ä¸º0ã€1æˆ–2
 Return		: void
-Desc		: µ±offset = 0 µã»÷µÄÑ§Éú»úÊÇ0¡¢4¡¢8»ò12£¬
-			  µ±offset = 1 µã»÷µÄÑ§Éú»úÊÇ1¡¢5¡¢9»ò13
-			  µ±offset = 2 µã»÷µÄÑ§Éú»úÊÇ2¡¢6¡¢10»ò14
-			  µ±offset = 3 µã»÷µÄÑ§Éú»úÊÇ3¡¢7¡¢11»ò15
+Desc		: å½“offset = 0 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯0ã€4ã€8æˆ–12ï¼Œ
+			  å½“offset = 1 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯1ã€5ã€9æˆ–13
+			  å½“offset = 2 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯2ã€6ã€10æˆ–14
+			  å½“offset = 3 ç‚¹å‡»çš„å­¦ç”Ÿæœºæ˜¯3ã€7ã€11æˆ–15
 ******************************************************************/
 void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder, int offset)
 {
@@ -558,11 +558,11 @@ Date		: 2018-6-13 13:36
 Parameter	: nFlags
 Parameter	: point
 Return		: void
-Desc		: Ë«»÷ÏûÏ¢£¬±»Ë«»÷Ñ§Éú»úÊµÏÖ1¶Ô1ÆÁÄ»¼à¿Ø
+Desc		: åŒå‡»æ¶ˆæ¯ï¼Œè¢«åŒå‡»å­¦ç”Ÿæœºå®žçŽ°1å¯¹1å±å¹•ç›‘æŽ§
 ******************************************************************/
 void CScreenMonitorDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO:  åœ¨æ­¤æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç å’Œ/æˆ–è°ƒç”¨é»˜è®¤å€¼
 	int itemOrder = 0;
 	switch (m_widthCount)
 	{
@@ -582,7 +582,7 @@ void CScreenMonitorDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
 	}
 	if (m_widthCount != 1)
 	{
-		// ·¢ËÍÏûÏ¢¸øTeacherDlg ¶Ô»°¿ò£¬ÈÃËü´¦ÀíºóÐøµÄÊÂÇé
+		// å‘é€æ¶ˆæ¯ç»™TeacherDlg å¯¹è¯æ¡†ï¼Œè®©å®ƒå¤„ç†åŽç»­çš„äº‹æƒ…
 		::SendMessage(m_pParentWnd->m_hWnd, ID_ONESTUINSCREEN, 0, (LPARAM)&itemOrder);
 	}
 	CDialogEx::OnLButtonDblClk(nFlags, point);
