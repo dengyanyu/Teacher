@@ -1,6 +1,3 @@
-// OneStuScreenDlg.cpp : 实现文件
-//
-
 #include "stdafx.h"
 #include "Teacher.h"
 #include "OneStuScreenDlg.h"

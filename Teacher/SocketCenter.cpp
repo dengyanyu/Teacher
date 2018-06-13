@@ -1,7 +1,3 @@
-/******************************************************************* 
-FileName: MySocket.cpp
-Desc	: SOCKET 网络数据传输的核心类
-*******************************************************************/ 
 #include "stdafx.h"
 #include "SocketCenter.h"
 
@@ -24,16 +20,26 @@ CSocketCenter::~CSocketCenter()
 	}
 }
 
+/******************************************************************
+Function	: Clean
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:26
+Return		: void
+Desc		: 清理
+******************************************************************/
 void CSocketCenter::Clean()
 {
 	::WSACleanup();
 }
 
+
 /******************************************************************
 Function	: SendDataTCP
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:26
 Parameter	: socket--SOCKET
-			  buf--传输的数据的基地址
-			  bytes--传输的数据的大小，buf中数据的大小
+Parameter	: buf--传输的数据的基地址
+Parameter	: bytes--传输的数据的大小，buf中数据的大小
 Return		: int--发送成功的数据的字节数
 Desc		: 基于TCP 传输数据到学生机
 ******************************************************************/
@@ -61,9 +67,11 @@ int CSocketCenter::SendDataTCP(SOCKET socket, const char* buf, int bytes)
 	return b - (char*)buf;
 }
 
+
 /******************************************************************
 Function	: OutputError
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:27
 Return		: void
 Desc		: 数据传输出错后输出的信息
 ******************************************************************/
@@ -80,11 +88,14 @@ void CSocketCenter::OutputError()
 	}
 }
 
+
 /******************************************************************
 Function	: RecvDataTCP
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:27
 Parameter	: socket--SOCKET
-			  buf--传输的数据的基地址  
-			  bytes--传输的数据的大小，buf中数据的大小
+Parameter	: buf--传输的数据的基地址  
+Parameter	: bytes--传输的数据的大小，buf中数据的大小
 Return		: int--传输成功的数据的大小
 Desc		: 基于TCP接收来自学生机的数据
 ******************************************************************/
@@ -112,11 +123,14 @@ int CSocketCenter::RecvDataTCP(SOCKET socket, char* buf, int bytes)
 	return b - (char*)buf;
 }
 
+
 /******************************************************************
 Function	: InitSocketInfo
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:27
 Parameter	: port--监听的端口号
-			  listenCount--最大监听的学生机的数量
-Return		: bool 连接成功与否
+Parameter	: listenCount--最大监听的学生机的数量
+Return		: bool--连接成功与否
 Desc		: 初始化SOCKET 信息，之后可以建立连接
 ******************************************************************/
 bool CSocketCenter::InitSocketInfo(int port, int listenCount)
@@ -168,10 +182,13 @@ bool CSocketCenter::InitSocketInfo(int port, int listenCount)
 	return true;
 }
 
+
 /******************************************************************
 Function	: SendReadyInfo
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:28
 Parameter	: socket--与学生机连接成功的SOCKET
-			  msgID--请求的类型，比如屏幕监控
+Parameter	: msgID--请求的类型，比如屏幕监控
 Return		: void
 Desc		: 发送请求消息到学生机
 ******************************************************************/
@@ -183,9 +200,11 @@ void CSocketCenter::SendReadyInfo(SOCKET socket, int msgID)
 	SendDataTCP(socket, (char*)&msgType, sizeof(MSGTYPE));
 }
 
+
 /******************************************************************
 Function	: GetSocketInit
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:28
 Return		: SOCKET
 Desc		: 获得初始化的SOCKET，不是用于接发数据
 ******************************************************************/
@@ -197,10 +216,12 @@ SOCKET CSocketCenter::GetSocketInit()
 
 /******************************************************************
 Function	: InitMulticastSocket
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:28
 Parameter	: port--广播监听的消息
-			  multicastIp--组播IP
-			  addr--sockaddr_in
-Return		: 
+Parameter	: multicastIp--组播IP
+Parameter	: addr--sockaddr_in
+Return		: SOCKET
 Desc		: 初始化广播的SOCKET 信息
 ******************************************************************/
 SOCKET CSocketCenter::InitMulticastSocket(int port, char* multicastIp, sockaddr_in& addr)
@@ -231,11 +252,13 @@ SOCKET CSocketCenter::InitMulticastSocket(int port, char* multicastIp, sockaddr_
 
 /******************************************************************
 Function	: SendDataUDP
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:29
 Parameter	: socket--广播SOCKET
-			  sendBuf--要发送的数据的大小
-			  sendBytes--发送的数据的大小，sendBuf指向的数据的大小
-			  addr--sockaddr_in
-Return		: 
+Parameter	: sendBuf--要发送的数据的大小
+Parameter	: sendBytes--发送的数据的大小，sendBuf指向的数据的大小
+Parameter	: addr--sockaddr_in
+Return		: int
 Desc		: 基于UDP 发送数据到学生机
 ******************************************************************/
 int CSocketCenter::SendDataUDP(SOCKET socket, const char* sendBuf, int sendBytes, sockaddr_in addr)
@@ -294,7 +317,17 @@ bool CSocketCenter::GetLocalIP(char* ip)
 //结构体记录ip信息
 
 
-//获取多个ip地址信息列表
+
+/******************************************************************
+Function	: GetLocalIPs
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:30
+Parameter	: ips--返回的多个IP地址表
+Parameter	: maxCnt--最多获取多少IP地址
+Parameter	: cnt--取得的IP地址数量
+Return		: bool
+Desc		: 获取多个ip地址信息列表
+******************************************************************/
 bool CSocketCenter::GetLocalIPs(IPInfo* ips, int maxCnt, int* cnt)
 {
 	//1.初始化wsa  
@@ -327,6 +360,13 @@ bool CSocketCenter::GetLocalIPs(IPInfo* ips, int maxCnt, int* cnt)
 	return true;
 }
 
+/******************************************************************
+Function	: doServer
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:31
+Return		: bool
+Desc		: 启动IP寻址服务器
+******************************************************************/
 bool CSocketCenter::doServer() {
 	int m_nPort = IP_PORT;
 	const int MAX_BUF_LEN = 255;

@@ -1,6 +1,3 @@
-// ScreenDlg.cpp : 实现文件
-//
-
 #include "stdafx.h"
 #include "ScreenMonitorDlg.h"
 #include "afxdialogex.h"
@@ -23,6 +20,13 @@ CScreenMonitorDlg::~CScreenMonitorDlg()
 	CleanData();
 }
 
+/******************************************************************
+Function	: CleanData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:47
+Return		: void
+Desc		: 清理
+******************************************************************/
 void CScreenMonitorDlg::CleanData()
 {
 	// 	if (m_screenSocket != INVALID_SOCKET)
@@ -34,9 +38,11 @@ void CScreenMonitorDlg::CleanData()
 	DeletepBitMapInfo();
 }
 
+
 /******************************************************************
 Function	: DeletepBitMapInfo
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:47
 Return		: void
 Desc		: 释放new 的内存
 ******************************************************************/
@@ -49,9 +55,11 @@ void CScreenMonitorDlg::DeletepBitMapInfo()
 	}
 }
 
+
 /******************************************************************
-Function	: DeletepBmpTransData
-Parameter	: 无
+Function	: DeletepBmpCompressData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:48
 Return		: void
 Desc		: 释放new 的内存
 ******************************************************************/
@@ -124,14 +132,16 @@ void CScreenMonitorDlg::OnSize(UINT nType, int cx, int cy)
 //
 // }
 
-/*
-	功能：显示学生机的桌面
-	Input:
-	bmp--结构体，里边保存了学生机桌面截图的数据
-	itemOrder--学生机的顺序，取值为0-15而且是连续的
-	Output:
 
-	*/
+/******************************************************************
+Function	: ShowBmp
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:48
+Parameter	: bmp--结构体，里边保存了学生机桌面截图的数据
+Parameter	: itemOrder--学生机的顺序，取值为0-15而且是连续的
+Return		: void
+Desc		: 显示学生机的桌面
+******************************************************************/
 void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 {
 	m_pBmpCompressData = UnCompressData(bmp->pBMPINFO->bmiHeader.biSizeImage,
@@ -186,6 +196,16 @@ void CScreenMonitorDlg::ShowBmp(BMP* bmp, int itemOrder)
 	m_pBmpCompressData = NULL;
 }
 
+/******************************************************************
+Function	: DetermineShowRegion
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:49
+Parameter	: itemOrder--学生机在对话框中显示的顺序取值为0-15
+Parameter	: xDest--显示在对话框的左上角的x坐标
+Parameter	: yDest--显示在对话框的左上角的y坐标
+Return		: void
+Desc		: 分配每个学生机显示屏幕的位置
+******************************************************************/
 void CScreenMonitorDlg::DetermineShowRegion(int itemOrder, int &xDest, int &yDest)
 {
 	// 	int blockWidth = m_rect.Width() / m_widthCount;
@@ -207,11 +227,14 @@ void CScreenMonitorDlg::DetermineShowRegion(int itemOrder, int &xDest, int &yDes
 	}
 }
 
+
 /******************************************************************
 Function	: SixteenRegion
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:30
 Parameter	: itemOrder--学生机在对话框中显示的顺序取值为0-15
-			  xDest--显示在对话框的左上角的x坐标
-			  yDest--显示在对话框的左上角的y坐标
+Parameter	: xDest--显示在对话框的左上角的x坐标
+Parameter	: yDest--显示在对话框的左上角的y坐标
 Return		: void
 Desc		: 同时监控的学生机的数量少于或等于16台
 ******************************************************************/
@@ -226,11 +249,14 @@ void CScreenMonitorDlg::SixteenRegion(int itemOrder, int &xDest, int &yDest)
 	}
 }
 
+
 /******************************************************************
 Function	: NineRegion
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:31
 Parameter	: itemOrder--学生机在对话框中显示的顺序取值为0-8
-			  xDest--显示在对话框的左上角的x坐标
-			  yDest--显示在对话框的左上角的y坐标
+Parameter	: xDest--显示在对话框的左上角的x坐标
+Parameter	: yDest--显示在对话框的左上角的y坐标
 Return		: void
 Desc		: 同时监控的学生机的数量少于或等于9台
 ******************************************************************/
@@ -245,11 +271,14 @@ void CScreenMonitorDlg::NineRegion(int itemOrder, int &xDest, int &yDest)
 	}
 }
 
+
 /******************************************************************
 Function	: FourRegion
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:32
 Parameter	: itemOrder--学生机在对话框中显示的顺序取值为0-3
-			  xDest--显示在对话框的左上角的x坐标
-			  yDest--显示在对话框的左上角的y坐标
+Parameter	: xDest--显示在对话框的左上角的y坐标
+Parameter	: yDest--显示在对话框的左上角的x坐标
 Return		: void
 Desc		: 同时监控的学生机的数量少于或等于4台
 ******************************************************************/
@@ -264,11 +293,14 @@ void CScreenMonitorDlg::FourRegion(int itemOrder, int &xDest, int &yDest)
 	}
 }
 
+
 /******************************************************************
 Function	: OneRegion
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:32
 Parameter	: itemOrder--学生机在对话框中显示的顺序取值为0
-			  xDest--显示在对话框的左上角的x坐标
-			  yDest--显示在对话框的左上角的y坐标
+Parameter	: xDest--显示在对话框的左上角的x坐标
+Parameter	: yDest--显示在对话框的左上角的y坐标
 Return		: void
 Desc		: 同时监控的学生机的数量等于1台
 ******************************************************************/
@@ -281,11 +313,14 @@ void CScreenMonitorDlg::OneRegion(int itemOrder, int &xDest, int &yDest)
 	}
 }
 
+
 /******************************************************************
 Function	: UnCompressData
-Parameter	: biSize--压缩前的图像大小
-			  ImagebmpCompressSize--压缩后的图像大小
-			  pBmpCompressData--压缩的图像数据
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:33
+Parameter	: biSizeImage--压缩前的图像大小
+Parameter	: bmpCompressSize--压缩后的图像大小
+Parameter	: pBmpCompressData--压缩的图像数据
 Return		: BYTE*
 Desc		: 解压从学生机接收到的屏幕图像数据
 ******************************************************************/
@@ -369,13 +404,15 @@ void CScreenMonitorDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBa
 	CDialogEx::OnVScroll(nSBCode, nPos, pScrollBar);
 }
 
+
 /******************************************************************
 Function	: FourRegionClk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:33
 Parameter	: point--鼠标坐标
-			  itemOrder--学生机显示的顺序0-3
+Parameter	: itemOrder--学生机显示的顺序0-3
 Return		: void
-Desc		: 同时监控的学生机的数量少于等于4台，判断学生机点击的
-是哪个学生机
+Desc		: 同时监控的学生机的数量少于等于4台，判断学生机点击的是哪个学生机
 ******************************************************************/
 void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder)
 {
@@ -389,13 +426,15 @@ void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder)
 	}
 }
 
+
 /******************************************************************
 Function	: NineRegionClk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:34
 Parameter	: point--鼠标坐标
-			  itemOrder--学生机显示的顺序0-8
+Parameter	: itemOrder--学生机显示的顺序0-8
 Return		: void
-Desc		: 同时监控的学生机的数量少于等于9台，判断
-点击的是哪个学生机
+Desc		: 同时监控的学生机的数量少于等于9台，判断点击的是哪个学生机
 ******************************************************************/
 void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder)
 {
@@ -413,13 +452,15 @@ void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder)
 	}
 }
 
+
 /******************************************************************
 Function	: SixteenRegionClk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:34
 Parameter	: point--鼠标坐标
-			  itemOrder--学生机显示的顺序0-15
+Parameter	: itemOrder--学生机显示的顺序0-15
 Return		: void
-Desc		: 同时监控的学生机的数量少于等于16台，判断
-点击的是哪个学生机
+Desc		: 同时监控的学生机的数量少于等于16台，判断点击的是哪个学生机
 ******************************************************************/
 void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder)
 {
@@ -441,14 +482,16 @@ void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder)
 	}
 }
 
+
 /******************************************************************
 Function	: FourRegionClk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:35
 Parameter	: point--鼠标点击的位置
-			  itemOrder--学生机在对话框上显示的顺序
-			  offset--偏移第一列的位置取值为0或1
+Parameter	: itemOrder--学生机在对话框上显示的顺序
+Parameter	: offset--偏移第一列的位置取值为0或1
 Return		: void
-Desc		: 当offset = 0，点击的学生机是0或2，
-当offset = 1 点击的学生机是1 或3
+Desc		: 当offset = 0，点击的学生机是0或2，当offset = 1 点击的学生机是1 或3
 ******************************************************************/
 void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder, int offset)
 {
@@ -462,15 +505,18 @@ void CScreenMonitorDlg::FourRegionClk(CPoint point, int& itemOrder, int offset)
 	}
 }
 
+
 /******************************************************************
 Function	: NineRegionClk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:35
 Parameter	: point--鼠标点击的位置
-			  itemOrder--学生机在对话框上显示的顺序
-			  offset--偏移第一列的位置取值为0、1或2
+Parameter	: itemOrder--学生机在对话框上显示的顺序
+Parameter	: offset--偏移第一列的位置取值为0、1或2
 Return		: void
-Desc		: 当offset = 0，点击的学生机是0、3或6，
-当offset = 1 点击的学生机是1、4或7
-当offset = 2 点击的学生机是2、5或8
+Desc		: 当offset = 0 点击的学生机是0、3或6，
+			  当offset = 1 点击的学生机是1、4或7
+			  当offset = 2 点击的学生机是2、5或8
 ******************************************************************/
 void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder, int offset)
 {
@@ -481,16 +527,19 @@ void CScreenMonitorDlg::NineRegionClk(CPoint point, int& itemOrder, int offset)
 	}
 }
 
+
 /******************************************************************
 Function	: SixteenRegionClk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:36
 Parameter	: point--鼠标点击的位置
-			  itemOrder--学生机在对话框上显示的顺序
-			  offset--偏移第一列的位置取值为0、1或2
+Parameter	: itemOrder--学生机在对话框上显示的顺序
+Parameter	: offset--偏移第一列的位置取值为0、1或2
 Return		: void
-Desc		: 当offset = 0，点击的学生机是0、4、8或12，
-当offset = 1 点击的学生机是1、5、9或13
-当offset = 2 点击的学生机是2、6、10或14
-当offset = 3 点击的学生机是3、7、11或15
+Desc		: 当offset = 0 点击的学生机是0、4、8或12，
+			  当offset = 1 点击的学生机是1、5、9或13
+			  当offset = 2 点击的学生机是2、6、10或14
+			  当offset = 3 点击的学生机是3、7、11或15
 ******************************************************************/
 void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder, int offset)
 {
@@ -501,9 +550,13 @@ void CScreenMonitorDlg::SixteenRegionClk(CPoint point, int& itemOrder, int offse
 	}
 }
 
+
 /******************************************************************
 Function	: OnLButtonDblClk
-Parameter	: nFlags       point
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 13:36
+Parameter	: nFlags
+Parameter	: point
 Return		: void
 Desc		: 双击消息，被双击学生机实现1对1屏幕监控
 ******************************************************************/

@@ -23,6 +23,13 @@ CMulticast::~CMulticast()
 	CleanData();
 }
 
+/******************************************************************
+Function	: CleanData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:05
+Return		: void
+Desc		: 释放资源
+******************************************************************/
 void CMulticast::CleanData()
 {
 	DeletepBitMapInfo();
@@ -32,9 +39,11 @@ void CMulticast::CleanData()
 	CloseSocketMulticast();
 }
 
+
 /******************************************************************
 Function	: CloseSocketMulticast
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:05
 Return		: void
 Desc		: 释放SOCKET资源
 ******************************************************************/
@@ -47,11 +56,13 @@ void CMulticast::CloseSocketMulticast()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepBmpTransData
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:05
 Return		: void
-Desc		: 释放new 的内存
+Desc		: 释放new 的内存,防止内存泄漏
 ******************************************************************/
 void CMulticast::DeletepBmpTransData()
 {
@@ -62,11 +73,13 @@ void CMulticast::DeletepBmpTransData()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepBitMapInfo
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:04
 Return		: void
-Desc		: 释放new 的内存
+Desc		: 释放new 的内存,防止内存泄漏
 ******************************************************************/
 void CMulticast::DeletepBitMapInfo()
 {
@@ -77,9 +90,11 @@ void CMulticast::DeletepBitMapInfo()
 	}
 }
 
+
 /******************************************************************
 Function	: GetDeskScreeData
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:04
 Return		: void
 Desc		: 获得桌面的图像数据并调用压缩方法
 ******************************************************************/
@@ -114,8 +129,11 @@ void CMulticast::GetDeskScreeData()
 	//	_CrtDumpMemoryLeaks();
 }
 
+
 /******************************************************************
 Function	: SetCursorIcon
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:04
 Parameter	: memDC--CDC类
 Return		: void
 Desc		: 获得鼠标信息并绘制到桌面图像中
@@ -149,9 +167,14 @@ void CMulticast::SetCursorIcon(CDC &memDC)
 		);
 }
 
+
 /******************************************************************
 Function	: GetDeskScreenDC
-Parameter	: memDC--CDC类  bmp--位图   bitmap--位图结构体
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:04
+Parameter	: memDC--CDC类
+Parameter	: bmp--位图
+Parameter	: bitmap--位图结构体
 Return		: void
 Desc		: 获得桌面图像
 ******************************************************************/
@@ -171,8 +194,11 @@ void CMulticast::GetDeskScreenDC(CDC &memDC, CBitmap &bmp, BITMAP& bitmap)
 	pDeskDC->DeleteDC();
 }
 
+
 /******************************************************************
 Function	: CompressBmpData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:03
 Parameter	: pBmpOriginalData--桌面图像的数据
 Return		: void
 Desc		: 使用ZLIB 库压缩桌面图像数据
@@ -206,10 +232,14 @@ void CMulticast::CompressBmpData(BYTE* pBmpOriginalData)
 	pCompressData = NULL;
 }
 
+
 /******************************************************************
 Function	: InitBITMAPINFO
-Parameter	: bitmap--图像的大小等信息  height--桌面的高
-width--桌面的宽
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:03
+Parameter	: bitmap--图像的大小等信息
+Parameter	: height--桌面的高
+Parameter	: width--桌面的宽
 Return		: void
 Desc		: 初始化图像的信息头结构体 BITMAPINFO
 ******************************************************************/
@@ -237,10 +267,13 @@ void CMulticast::InitBITMAPINFO(BITMAP &bitmap, int height, int width)
 	m_pBitMapInfo->bmiHeader.biYPelsPerMeter = 0;
 }
 
+
 /******************************************************************
 Function	: SendScreenBmpData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:02
 Parameter	: multicastSocket--广播SOCKET
-addr--SOCKADDR_IN组播技术发送数据时需要使用
+Parameter	: addr--SOCKADDR_IN组播技术发送数据时需要使用
 Return		: void
 Desc		: 发送屏幕图像数据到学生机
 ******************************************************************/
@@ -258,11 +291,14 @@ void CMulticast::SendScreenBmpData(SOCKET multicastSocket, SOCKADDR_IN addr)
 	}
 }
 
+
 /******************************************************************
 Function	: SetBmpData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:02
 Parameter	: multicastData--需要被赋值的MULTICASTDATA 结构体 
-i--一幅桌面图像的第几次传输
-count--一幅桌面图像需要被传输的次数
+Parameter	: i--幅桌面图像的第几次传输
+Parameter	: count--幅桌面图像需要被传输的次数
 Return		: void
 Desc		: 发送屏幕图像数据到学生机
 ******************************************************************/
@@ -288,8 +324,11 @@ void CMulticast::SetBmpData(MULTICASTDATA &multicastData, int i, int count)
 	}
 }
 
+
 /******************************************************************
 Function	: InitBmpData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:00
 Parameter	: multicastData--桌面图像数据的结构体
 Return		: int--一幅桌面图像需要被传输的次数
 Desc		: 为桌面图像结构体BMPDATA初始化一些必要信息
@@ -310,9 +349,11 @@ int CMulticast::InitBmpData(MULTICASTDATA &multicastData)
 	return count;
 }
 
+
 /******************************************************************
 Function	: SendScreenData
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018/06/13
 Return		: void
 Desc		: 不断发送数据到学生机
 ******************************************************************/
@@ -333,12 +374,14 @@ void CMulticast::SendScreenData()
 	}
 }
 
+
 /******************************************************************
 Function	: SetIsMulticastEnd
-Parameter	: isScreenMonitorEnd
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018/06/13
+Parameter	: IsMulticastEnd--true运行线程，false停止线程
 Return		: void
 Desc		: 发送图像数据到学生机的线程是否结束的标志
-IsMulticastEnd--true运行线程，false停止线程
 ******************************************************************/
 void CMulticast::SetIsMulticastEnd(bool IsMulticastEnd)
 {

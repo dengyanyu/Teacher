@@ -1,10 +1,3 @@
-/******************************************************************* 
-FileName: TeacherDlg.cpp
-Author	: xiaoheike
-Date	: 2015-05-11 15:13:57
-Desc	: 教师机的主对话框，类似一个中转站，监听以及数据经过这个类转
-到其他的类中
-*******************************************************************/ 
 #include "stdafx.h"
 #include "Teacher.h"
 #include "TeacherDlg.h"
@@ -139,10 +132,11 @@ HCURSOR CTeacherDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
 /******************************************************************
 Function	: OnMsgListen
-Date		: 2015-05-11 15:15:25
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:07
 Parameter	: self--CTeacherDlg类
 Return		: DWORD WINAPI
 Desc		: 监听学生机登录线程的运行方法
@@ -168,11 +162,11 @@ bool CTeacherDlg::ListenIPGet()
 	return true;
 }
 
+
 /******************************************************************
 Function	: ListenStudentLogin
-Date		: 2015-05-11 15:16:18
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:07
 Return		: bool
 Desc		: 监听学生登录并产生唯一的ID
 ******************************************************************/
@@ -195,11 +189,11 @@ bool CTeacherDlg::ListenStudentLogin()
 	return true;
 }
 
+
 /******************************************************************
 Function	: SetLoginStudentID
-Date		: 2015-05-11 15:19:50
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:07
 Return		: void
 Desc		: 给登录学生机分配唯一的ID
 ******************************************************************/
@@ -231,11 +225,11 @@ void CTeacherDlg::SetLoginStudentID()
 	itemData->Run();
 }
 
+
 /******************************************************************
 Function	: SetMainDlgSytle
-Date		: 2015-05-11 15:20:51
-Author		: xiaoheike
-Parameter	: port--监听学生登录的端口号
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:08
 Return		: void
 Desc		: 设置教师机的主界面
 ******************************************************************/
@@ -253,11 +247,11 @@ void CTeacherDlg::SetMainDlgSytle()
 }
 
 
+
 /******************************************************************
 Function	: InsertColumn
-Date		: 2015-05-11 15:29:24
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:08
 Return		: void
 Desc		: 为ListControl 插入列头
 ******************************************************************/
@@ -272,11 +266,11 @@ void CTeacherDlg::InsertColumn()
 	m_list.DeleteColumn(0);
 }
 
+
 /******************************************************************
 Function	: CreateStatusBar
-Date		: 2015-05-11 15:30:17
-Author		: xiaoheike
-Parameter	: port--监听学生登录的端口号
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:08
 Return		: void
 Desc		: 创建状态栏
 ******************************************************************/
@@ -289,19 +283,19 @@ void CTeacherDlg::CreateStatusBar()
 	GetClientRect(&ct);
 	UINT b[2] = { 1009, 1010 };
 	hbar = m_statusBar.SetIndicators(b, 2);
-	m_statusBar.SetPaneInfo(0, b[0], SBPS_NORMAL, (int)ct.Width() * 0.5);
-	m_statusBar.SetPaneInfo(1, b[1], SBPS_NORMAL, (int)ct.Width() * 0.5);
+	m_statusBar.SetPaneInfo(0, b[0], SBPS_NORMAL, (int)(ct.Width() * 0.5));
+	m_statusBar.SetPaneInfo(1, b[1], SBPS_NORMAL, (int)(ct.Width() * 0.5));
 	m_statusBar.SetPaneText(0, _T("作者：石蕴金"));
 	m_statusBar.SetPaneText(1, _T("在线主机：0 台"));
 	// 显示工具条与状态条
 	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
 }
 
+
 /******************************************************************
 Function	: CreatToolBar
-Date		: 2015-05-11 15:31:02
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:08
 Return		: void
 Desc		: 创建工具栏
 ******************************************************************/
@@ -322,11 +316,11 @@ void CTeacherDlg::CreatToolBar()
 	m_toolBar.GetToolBarCtrl().EnableButton(ID_MULTICAST_STOP, false);
 }
 
+
 /******************************************************************
 Function	: LoadBitBmp
-Date		: 2015-05-11 15:32:49
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:08
 Return		: void
 Desc		: 加载位图资源
 ******************************************************************/
@@ -345,12 +339,13 @@ void CTeacherDlg::LoadBitBmp()
 	bmp.DeleteObject();
 }
 
+
 /******************************************************************
 Function	: OnAddStudent
-Date		: 2015-05-11 15:40:25
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:09
 Parameter	: wparam--响应消息时传入的数值，这里是CItemData类对象
-lparam--响应消息时传入的数值，这里没有使用
+Parameter	: lparam--响应消息时传入的数值，这里没有使用
 Return		: LRESULT
 Desc		: 响应ID_STUDENTLOGIN 消息
 ******************************************************************/
@@ -370,11 +365,11 @@ LRESULT CTeacherDlg::OnAddStudent(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: ShowStudentInfo
-Date		: 2015-05-11 15:43:48
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:09
 Return		: void
 Desc		: 显示登录学生机的信息
 ******************************************************************/
@@ -389,12 +384,13 @@ void  CTeacherDlg::ShowStudentInfo()
 	online.ReleaseBuffer();
 }
 
+
 /******************************************************************
 Function	: OnLoginOutStudent
-Date		: 2015-05-11 15:44:36
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:09
 Parameter	: wparam--响应消息时传入的数值，这里是登录学生的ID 值
-lparam--响应消息时传入的数值，这里没有使用
+Parameter	: lparam--响应消息时传入的数值，这里没有使用
 Return		: LRESULT
 Desc		: 登录学生下线，响应ID_STUDENTLOGINOUT 消息
 ******************************************************************/
@@ -416,12 +412,13 @@ LRESULT CTeacherDlg::OnLoginOutStudent(WPARAM wparam, LPARAM lparam)
 }
 
 
+
 /******************************************************************
 Function	: OnSetBmpCompressData
-Date		: 2015-05-11 15:47:17
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:09
 Parameter	: wparam--响应消息时传入的数值，这里是BMP结构体对象
-lparam--响应消息时传入的数值，这里没有使用
+Parameter	: lparam--响应消息时传入的数值，这里没有使用
 Return		: LRESULT
 Desc		: 接收来自学生机的屏幕图像数据ID_SETBMPDATA 消息
 ******************************************************************/
@@ -433,12 +430,13 @@ LRESULT CTeacherDlg::OnSetBmpCompressData(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: OnEndMonitor
-Date		: 2015-05-11 15:48:39
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:10
 Parameter	: wparam--响应消息时传入的数值，这里没有使用
-lparam--响应消息时传入的数值，这里没有使用
+Parameter	: lparam--响应消息时传入的数值，这里没有使用
 Return		: LRESULT
 Desc		: 结束对学生机的监控响应ID_MONITOREND
 ******************************************************************/
@@ -462,15 +460,16 @@ LRESULT CTeacherDlg::OnEndMonitor(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: OnCreatOneStudentDlg
-Date		: 2015-05-11 15:50:39
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:10
 Parameter	: wparam--响应消息时传入的数值，这里没有使用
-lparam--响应消息时传入的数值，这里是学生在一对多对话框中显示的序号
+Parameter	: lparam--响应消息时传入的数值，这里是学生在一对多对话框中显示的序号
 Return		: LRESULT
 Desc		: 响应一对多屏幕监控双击选中学生机实现一对一屏幕监控
-响应ID_ONSTUINSCREEN 消息
+			  响应ID_ONSTUINSCREEN 消息
 ******************************************************************/
 LRESULT CTeacherDlg::OnCreatOneStudentDlg(WPARAM wparam, LPARAM lparam)
 {
@@ -494,12 +493,13 @@ LRESULT CTeacherDlg::OnCreatOneStudentDlg(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: OnSetOneStuBmpCompressData
-Date		: 2015-05-11 15:52:26
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:11
 Parameter	: wparam--响应消息时传入的数值，这里是BMP结构体对象
-lparam--响应消息时传入的数值，这里是学生在一对多对话框中显示的序号
+Parameter	: lparam--响应消息时传入的数值，这里是学生在一对多对话框中显示的序号
 Return		: LRESULT
 Desc		: 接收来自学生机的屏幕图像数据响应消息ID_STEONSTUSCREENDATA
 ******************************************************************/
@@ -511,12 +511,13 @@ LRESULT CTeacherDlg::OnSetOneStuBmpCompressData(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: OnEndOneStudentMonitor
-Date		: 2015-05-11 15:54:21
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:11
 Parameter	: wparam--响应消息时传入的数值，这里没有使用
-lparam--响应消息时传入的数值，这里是学生在一对多对话框中显示的序号
+Parameter	: lparam--响应消息时传入的数值，这里是学生在一对多对话框中显示的序号
 Return		: LRESULT
 Desc		: 结束一对一屏幕监控
 ******************************************************************/
@@ -535,14 +536,13 @@ LRESULT CTeacherDlg::OnEndOneStudentMonitor(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: OnBeginScreenMonitor
-Date		: 2015-05-11 15:55:07
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:11
 Return		: void
-Desc		: 响应消息ID_ONSCREENMONITOR并调用发送屏幕监控消息到
-学生机的方法
+Desc		: 响应消息ID_ONSCREENMONITOR并调用发送屏幕监控消息到学生机的方法
 ******************************************************************/
 void CTeacherDlg::OnBeginScreenMonitor()
 {
@@ -561,10 +561,11 @@ void CTeacherDlg::OnBeginScreenMonitor()
 	BeginScreenMonitor(selCount);
 }
 
+
 /******************************************************************
 Function	: BeginScreenMonitor
-Date		: 2015-05-11 15:57:07
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:12
 Parameter	: selCount--要监控的学生机的数量
 Return		: void
 Desc		: 发送开始屏幕监控消息到教师机
@@ -613,11 +614,11 @@ void CTeacherDlg::BeginScreenMonitor(int selCount)
 	m_toolBar.GetToolBarCtrl().EnableButton(ID_SCREENMONITOR, false);
 }
 
+
 /******************************************************************
 Function	: OnMulticast
-Date		: 2015-05-11 15:57:50
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:12
 Return		: void
 Desc		: 开始广播响应消息ID_MULTICAST
 ******************************************************************/
@@ -636,6 +637,14 @@ void CTeacherDlg::OnMulticast()
 	::CloseHandle(CreateThread(0, 0, SwitchButton, (LPVOID)this, 0, NULL));
 }
 
+
+/******************************************************************
+Function	: OnMulticastStop
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:12
+Return		: void
+Desc		: 停止关闭响应消息ID_MULTICAST_STOP
+******************************************************************/
 void CTeacherDlg::OnMulticastStop()
 {
 	
@@ -651,10 +660,11 @@ void CTeacherDlg::OnMulticastStop()
 	::CloseHandle(CreateThread(0, 0, SwitchButton, (LPVOID)this, 0, NULL));
 }
 
+
 /******************************************************************
 Function	: OnSendScreenData
-Date		: 2015-05-11 15:58:37
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:13
 Parameter	: self--CTeacherDlg类对象
 Return		: DWORD WINAPI
 Desc		: 发送教师机屏幕图像数据线程的调用方法
@@ -674,7 +684,6 @@ Parameter	: LPVOID self
 Return		: DWORD WINAPI
 Desc		: 
 ******************************************************************/
-
 DWORD WINAPI CTeacherDlg::SwitchButton(LPVOID self)
 {
 	CTeacherDlg* t = (CTeacherDlg*)self;
@@ -691,11 +700,11 @@ DWORD WINAPI CTeacherDlg::SwitchButton(LPVOID self)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: SendScreenData
-Date		: 2015-05-11 15:59:38
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:17
 Return		: void
 Desc		: 发送教师机屏幕图像数据到学生机
 ******************************************************************/
@@ -704,6 +713,14 @@ void CTeacherDlg::SendScreenData()
 	m_pMulticast->SendScreenData();
 }
 
+
+/******************************************************************
+Function	: OnDestroy
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:17
+Return		: void
+Desc		: 窗口关闭销毁最终处理
+******************************************************************/
 void CTeacherDlg::OnDestroy()
 {
 	CDialogEx::OnDestroy();
@@ -712,6 +729,14 @@ void CTeacherDlg::OnDestroy()
 	DeleteSocketMsg();
 }
 
+
+/******************************************************************
+Function	: DeletepMulticast
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:16
+Return		: void
+Desc		: 删除广播对象释放内存
+******************************************************************/
 void CTeacherDlg::DeletepMulticast()
 {
 	if (m_pMulticast != NULL)
@@ -721,11 +746,11 @@ void CTeacherDlg::DeletepMulticast()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepScreenDlg
-Date		: 2015-05-11 16:00:08
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:16
 Return		: void
 Desc		: 释放new 的内存
 ******************************************************************/
@@ -738,11 +763,11 @@ void CTeacherDlg::DeletepScreenDlg()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepOneStuScreenDlg
-Date		: 2015-05-11 16:00:23
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:16
 Return		: void
 Desc		: 释放new 的内存
 ******************************************************************/
@@ -755,11 +780,11 @@ void CTeacherDlg::DeletepOneStuScreenDlg()
 	}
 }
 
+
 /******************************************************************
 Function	: DeleteSocketMsg
-Date		: 2015-05-11 16:07:15
-Author		: xiaoheike
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:16
 Return		: void
 Desc		: 释放SOCKET 资源
 ******************************************************************/
@@ -773,6 +798,15 @@ void CTeacherDlg::DeleteSocketMsg()
 }
 
 
+/******************************************************************
+Function	: OnNMClickList1
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:15
+Parameter	: pNMHDR
+Parameter	: pResult
+Return		: void
+Desc		: CListControl双击消息
+******************************************************************/
 void CTeacherDlg::OnNMClickList1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
@@ -798,10 +832,10 @@ void CTeacherDlg::OnNMClickList1(NMHDR *pNMHDR, LRESULT *pResult)
 
 /******************************************************************
 Function	: OnNMDblclkList1
-Date		: 2015-05-12 17:20:11
-Author		: xiaoheike
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:13
 Parameter	: pNMHDR
-			  pResult
+Parameter	: pResult
 Return		: void
 Desc		: CListControl双击消息
 ******************************************************************/

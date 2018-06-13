@@ -11,8 +11,11 @@ CStuInfo::~CStuInfo()
 {
 }
 
+
 /******************************************************************
 Function	: SendStuInfoReq
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:24
 Parameter	: socket--连接学生机SOCKET 
 Return		: void
 Desc		: 向请求学生机登录信息
@@ -23,8 +26,11 @@ void CStuInfo::SendStuInfoReq(SOCKET socket)
 	mySocket.SendReadyInfo(socket, STUDENTINFO);
 }
 
+
 /******************************************************************
 Function	: GetStuInfo
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:25
 Parameter	: socket--连接学生机SOCKET
 Return		: void
 Desc		: 获得学生的登录信息
@@ -41,9 +47,11 @@ void CStuInfo::GetStuInfo(SOCKET socket)
 	m_stuID.Format(_T("%s"), stuInfoData.m_stuID);
 }
 
+
 /******************************************************************
 Function	: GetStuName
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:25
 Return		: CString
 Desc		: 获得学生的登录名称
 ******************************************************************/
@@ -55,7 +63,8 @@ CString CStuInfo::GetStuName() const
 
 /******************************************************************
 Function	: GetStuID
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:25
 Return		: CString
 Desc		: 获得学生的登录ID
 ******************************************************************/

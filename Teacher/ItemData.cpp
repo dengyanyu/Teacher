@@ -1,9 +1,3 @@
-/******************************************************************* 
-FileName: ItemData.cpp
-Desc	: 获得来自学生机的屏幕图像数据并转发到显示对话框
-
-
-*******************************************************************/ 
 #include "stdafx.h"
 #include "ItemData.h"
 
@@ -26,8 +20,11 @@ CItemData::CItemData(int id, HWND m_hWnd, SOCKET msgSocket)
 {
 }
 
+
 /******************************************************************
 Function	: OnListen
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:20
 Parameter	: lp--CItemData 对象
 Return		: DWORD WINAPI
 Desc		: 监听主消息的线程调用函数
@@ -39,9 +36,11 @@ DWORD WINAPI CItemData::OnListen(LPVOID lp)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: Run
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:20
 Return		: void
 Desc		: 在这里启动监听消息的线程
 ******************************************************************/
@@ -50,9 +49,11 @@ void CItemData::Run()
 	::CloseHandle(CreateThread(0, 0, OnListen, (LPVOID)this, 0, NULL));
 }
 
+
 /******************************************************************
-Function	: SendScreenBmpData
-Parameter	: 无
+Function	: SetScreenBmpData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:20
 Return		: void
 Desc		: 接收来自学生机的屏幕图像数据并将数据发送给显示图像的对话框
 ******************************************************************/
@@ -78,8 +79,11 @@ void CItemData::SetScreenBmpData()
 	SendBmpDataToDlg(bmpData);
 }
 
+
 /******************************************************************
 Function	: SendBmpDataToDlg
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:20
 Parameter	: bmpData--MBPDATA图像数据的结构体，图像的必要信息
 Return		: void
 Desc		: 将学生机接收到的屏幕图像数据发送到显示图像的对话框
@@ -109,8 +113,11 @@ void CItemData::SendBmpDataToDlg(BMPDATA &bmpData)
 	}
 }
 
+
 /******************************************************************
 Function	: SetBmpTransDataLast
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:21
 Parameter	: bmpData--MBPDATA图像数据的结构体，图像的必要信息
 Return		: void
 Desc		: 接收来自学生机的一幅屏幕图像数据的最后一部分
@@ -137,10 +144,13 @@ void CItemData::SetBmpTransDataNotLast(BMPDATA &bmpData)
 		SCREEN_TRANS_SIZE, bmpData.transData, SCREEN_TRANS_SIZE);
 }
 
+
 /******************************************************************
 Function	: UnCompressData
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:21
 Parameter	: biSizeImage--未压缩时的图像大小
-			  bmpCompressSize--压缩后的图像大小
+Parameter	: bmpCompressSize--压缩后的图像大小
 Return		: BYTE*
 Desc		: 将接收到的屏幕图像数据解压
 ******************************************************************/
@@ -167,8 +177,11 @@ BYTE* CItemData::UnCompressData(uLongf biSizeImage, uLongf bmpCompressSize)
 	return bmpShowData;
 }
 
+
 /******************************************************************
 Function	: BeginMonitor
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:21
 Parameter	: itemOrder--被监控学生面在对话框上显示的序号
 Return		: void
 Desc		: 1对多监控时发送屏幕监控消息到学生机，表示教师机要监控你的画面
@@ -181,11 +194,14 @@ void CItemData::BeginMonitor(int itemOrder)
 	m_Mysocket.SendReadyInfo(m_socketMsg, BEGINSCREENMONITOR);
 }
 
+
 /******************************************************************
 Function	: BeginMonitor
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:21
 Parameter	: isOneSutInScreen--false 将学生机屏幕图像数据发送给class CScreenMonitorDlg
-true 将学生机屏幕图像数据发送给class COneStuScreenDlg
-			  itemOrder--学生屏幕在对话框上显示的序号
+								true 将学生机屏幕图像数据发送给class COneStuScreenDlg
+Parameter	: itemOrder--学生屏幕在对话框上显示的序号
 Return		: void
 Desc		: 1对1监控时发送屏幕监控消息到学生机，表示教师机要监控你的画面
 ******************************************************************/
@@ -197,9 +213,11 @@ void CItemData::BeginMonitor(bool isOneSutInScreen, int itemOrder)
 	m_Mysocket.SendReadyInfo(m_socketMsg, BEGINSCREENMONITOR);
 }
 
+
 /******************************************************************
-Function	: EndMonitor
-Parameter	: 无
+Function	: EndScreenMonitor
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Return		: void
 Desc		: 发送消息，结束对学生机的屏幕图像监控
 ******************************************************************/
@@ -210,9 +228,11 @@ void CItemData::EndScreenMonitor()
 	m_endMonitor = true;
 }
 
+
 /******************************************************************
 Function	: BeginMulticast
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Return		: void
 Desc		: 开始教师机屏幕广播
 ******************************************************************/
@@ -221,9 +241,11 @@ void CItemData::BeginMulticast()
 	m_Mysocket.SendReadyInfo(m_socketMsg, BEGINMULTICAST);
 }
 
+
 /******************************************************************
 Function	: EndMulticast
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Return		: void
 Desc		: 结束教师机屏幕广播
 ******************************************************************/
@@ -238,9 +260,11 @@ void CItemData::CleanData()
 	DeletepBitMapInfo();
 }
 
+
 /******************************************************************
 Function	: DeletepBitMapInfo
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Return		: void
 Desc		: 释放new 的内存
 ******************************************************************/
@@ -253,9 +277,11 @@ void CItemData::DeletepBitMapInfo()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepBmpCompressData
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Return		: void
 Desc		: 释放new 的内存
 ******************************************************************/
@@ -268,9 +294,11 @@ void CItemData::DeletepBmpCompressData()
 	}
 }
 
+
 /******************************************************************
 Function	: OnBeginListen
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Return		: void
 Desc		: 监听来自学生机的消息
 ******************************************************************/
@@ -304,10 +332,13 @@ void CItemData::OnBeginListen()
 	}
 }
 
+
 /******************************************************************
 Function	: SendDataTCP
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:23
 Parameter	: nRet--接收消息的返回值
-			  msgType--来自学生机的消息的请求内容
+Parameter	: msgType--来自学生机的消息的请求内容
 Return		: void
 Desc		: 接收来自学生机的消息
 ******************************************************************/
@@ -332,9 +363,11 @@ void CItemData::SendDataTCP(int &nRet, MSGTYPE& msgType)
 	}
 }
 
+
 /******************************************************************
 Function	: GetSocket
-Parameter	: 无
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 11:24
 Return		: SOCKET
 Desc		: 返回一个连接的SOCKET
 ******************************************************************/
